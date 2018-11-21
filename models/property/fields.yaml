@@ -1,0 +1,86 @@
+fields:
+    is_active:
+        label: 'Is active'
+        span: auto
+        type: switch
+    is_translatable:
+        label: 'Is translatable'
+        span: auto
+        type: checkbox
+    name:
+        label: Name
+        span: auto
+        required: 1
+        type: text
+    type:
+        label: Type
+        options:
+            input: 'Text field (input)'
+            number: 'Text field (number)'
+            textarea: 'Text field (textarea)'
+            rich_editor: 'Text field (wysiwyg)'
+            single_checkbox: 'Single checkbox'
+            switch: Switch
+            checkbox: 'Checkbox list (checkbox)'
+            tag_list: 'Tag list'
+            select: Select
+            radio: 'Radio button'
+            balloon_selector: 'Balloon selector'
+            date: 'Date picker (datetime)'
+            colorpicker: 'Color picker (colorpicker)'
+            mediafinder: File
+        span: auto
+        required: 1
+        type: dropdown
+    external_id:
+        label: 'External ID'
+        span: auto
+        type: text
+    code:
+        label: Code
+        span: auto
+        type: text
+    measure:
+        label: Measure
+        span: auto
+        type: text
+    tab_name:
+        label: 'Tab name'
+        span: auto
+        type: text
+    'settings[datepicker]':
+        label: 'Property mode'
+        options:
+            date: Date
+            datetime: 'Date and time'
+            time: Time
+        span: right
+        trigger:
+            action: show
+            field: type
+            condition: 'value[date]'
+        type: dropdown
+    values:
+        span: right
+        path: $/shohabbos/board/controllers/properties/_relation_values.htm
+        trigger:
+            action: show
+            field: type
+            condition: 'value[checkbox] value[tag_list] value[select] value[radio] value[balloon_selector]'
+        type: partial
+    desc:
+        label: Description
+        size: large
+        span: left
+        type: textarea
+    'settings[mediafinder]':
+        label: 'Property mode'
+        options:
+            file: File
+            image: Image
+        span: right
+        trigger:
+            action: show
+            field: type
+            condition: 'value[mediafinder]'
+        type: dropdown

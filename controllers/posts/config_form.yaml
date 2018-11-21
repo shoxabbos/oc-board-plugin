@@ -1,0 +1,10 @@
+name: Post
+form: $/shohabbos/board/models/post/fields.yaml
+modelClass: Shohabbos\Board\Models\Post
+defaultRedirect: shohabbos/board/posts
+create:
+    redirect: 'shohabbos/board/posts/update/:id'
+    redirectClose: shohabbos/board/posts
+update:
+    redirect: shohabbos/board/posts
+    redirectClose: shohabbos/board/posts

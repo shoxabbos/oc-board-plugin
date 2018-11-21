@@ -1,0 +1,47 @@
+columns:
+    id:
+        label: id
+        type: number
+    title:
+        label: title
+        type: text
+    content:
+        label: content
+        type: text
+        invisible: true
+    user_id:
+        label: user_id
+        type: number
+    category_id:
+        label: category_id
+        type: number
+    location_id:
+        label: location_id
+        type: number
+        invisible: false
+    phone:
+        label: phone
+        type: text
+        invisible: true
+    email:
+        label: email
+        type: text
+        invisible: true
+    contact_name:
+        label: contact_name
+        type: text
+        invisible: true
+    status:
+        label: status
+        type: text
+    created_at:
+        label: created_at
+        type: datetime
+    updated_at:
+        label: updated_at
+        type: datetime
+        invisible: true
+    deleted_at:
+        label: deleted_at
+        type: datetime
+        invisible: true

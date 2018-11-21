@@ -1,0 +1,8 @@
+user:
+    label: User
+    view:
+        form: $/rainlab/user/models/user/fields.yaml
+        toolbarButtons: link|unlink
+    manage:
+        form: $/rainlab/user/models/user/fields.yaml
+        list: $/rainlab/user/models/user/columns.yaml

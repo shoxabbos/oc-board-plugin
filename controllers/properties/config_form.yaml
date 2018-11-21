@@ -1,0 +1,10 @@
+name: Properties
+form: $/shohabbos/board/models/property/fields.yaml
+modelClass: Shohabbos\Board\Models\Property
+defaultRedirect: shohabbos/board/properties
+create:
+    redirect: 'shohabbos/board/properties/update/:id'
+    redirectClose: shohabbos/board/properties
+update:
+    redirect: shohabbos/board/properties
+    redirectClose: shohabbos/board/properties
