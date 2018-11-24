@@ -3,16 +3,16 @@
 use Schema;
 use October\Rain\Database\Updates\Migration;
 
-class BuilderTableCreateShohabbosBoardProductProperties extends Migration
+class BuilderTableCreateShohabbosBoardPostProperties extends Migration
 {
     public function up()
     {
-        Schema::create('shohabbos_board_product_properties', function($table)
+        Schema::create('shohabbos_board_post_properties', function($table)
         {
             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned();
-            $table->integer('category_id');
-            $table->integer('product_id');
+            $table->integer('post_id')->unsigned();
+            $table->integer('category_id')->unsigned();
             $table->string('key');
             $table->string('value');
         });
@@ -20,6 +20,6 @@ class BuilderTableCreateShohabbosBoardProductProperties extends Migration
     
     public function down()
     {
-        Schema::dropIfExists('shohabbos_board_product_properties');
+        Schema::dropIfExists('shohabbos_board_post_properties');
     }
 }

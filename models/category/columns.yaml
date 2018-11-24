@@ -5,14 +5,15 @@ columns:
     name:
         label: name
         type: text
-    desc:
-        label: desc
+    slug:
+        label: slug
         type: text
-        invisible: true
-    seo_title:
-        label: seo_title
-        type: text
-        invisible: true
+    sort:
+        label: sort
+        type: number
+    parent_id:
+        label: parent_id
+        type: number
     seo_desc:
         label: seo_desc
         type: text
@@ -21,21 +22,7 @@ columns:
         label: seo_keys
         type: text
         invisible: true
-    parent_id:
-        label: parent_id
-        type: number
-        invisible: true
-    is_active:
-        label: is_active
-        type: text
-    filters:
-        label: filters
-        type: text
-        invisible: true
-    slug:
-        label: slug
-        type: text
-    sort:
-        label: Sort
+    seo_title:
+        label: seo_title
         type: text
         invisible: true

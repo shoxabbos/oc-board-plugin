@@ -2,13 +2,6 @@ columns:
     id:
         label: id
         type: number
-    title:
-        label: title
-        type: text
-    content:
-        label: content
-        type: text
-        invisible: true
     user_id:
         label: user_id
         type: number
@@ -18,30 +11,32 @@ columns:
     location_id:
         label: location_id
         type: number
-        invisible: false
-    phone:
-        label: phone
+    title:
+        label: title
         type: text
-        invisible: true
-    email:
-        label: email
+    slug:
+        label: slug
         type: text
-        invisible: true
+    content:
+        label: content
+        type: text
     contact_name:
         label: contact_name
         type: text
-        invisible: true
-    status:
-        label: status
+    phone:
+        label: phone
         type: text
+    email:
+        label: email
+        type: text
+    views:
+        label: views
+        type: number
     created_at:
         label: created_at
         type: datetime
+        invisible: true
     updated_at:
         label: updated_at
-        type: datetime
-        invisible: true
-    deleted_at:
-        label: deleted_at
         type: datetime
         invisible: true

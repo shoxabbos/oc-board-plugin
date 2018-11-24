@@ -1,6 +1,6 @@
 list: $/shohabbos/board/models/post/columns.yaml
 modelClass: Shohabbos\Board\Models\Post
-title: Post
+title: Posts
 noRecordsMessage: 'backend::lang.list.no_records'
 showSetup: true
 showCheckboxes: true

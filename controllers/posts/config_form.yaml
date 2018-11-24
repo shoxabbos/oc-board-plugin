@@ -1,4 +1,4 @@
-name: Post
+name: Posts
 form: $/shohabbos/board/models/post/fields.yaml
 modelClass: Shohabbos\Board\Models\Post
 defaultRedirect: shohabbos/board/posts

@@ -2,37 +2,33 @@ plugin:
     name: 'shohabbos.board::lang.plugin.name'
     description: 'shohabbos.board::lang.plugin.description'
     author: Shohabbos
-    icon: oc-icon-newspaper-o
-    homepage: 'https://itmaker.uz'
+    icon: oc-icon-adjust
+    homepage: ''
 permissions:
     manage_categories:
-        tab: Categories
+        tab: 'shohabbos.board::lang.plugin.name'
         label: 'Manage categories'
     manage_posts:
-        tab: Posts
+        tab: 'shohabbos.board::lang.plugin.name'
         label: 'Manage posts'
-    manage_properties:
-        tab: Properties
-        label: 'Manage properties'
 navigation:
-    board-menu:
+    board:
         label: Board
-        url: shohabbos/board/categories
+        url: shohabbos/board/posts
         icon: icon-life-ring
         permissions:
+            - manage_posts
             - manage_categories
         sideMenu:
-            side-menu-item:
+            board-posts:
                 label: Posts
                 url: shohabbos/board/posts
                 icon: icon-sitemap
+                permissions:
+                    - manage_posts
             board-categories:
                 label: Categories
                 url: shohabbos/board/categories
                 icon: icon-sitemap
                 permissions:
                     - manage_categories
-            board-properties:
-                label: Properties
-                url: shohabbos/board/properties
-                icon: icon-sitemap

@@ -12,15 +12,13 @@ class BuilderTableCreateShohabbosBoardProperties extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned();
             $table->string('name');
+            $table->string('label');
+            $table->string('comment')->nullable();
             $table->string('type');
-            $table->string('desc')->nullable();
-            $table->string('measure')->nullable();
-            $table->string('code')->nullable();
-            $table->integer('external_id')->nullable();
-            $table->boolean('is_translatable')->default(0);
-            $table->string('tab_name')->nullable();
-            $table->boolean('is_active')->default(1);
             $table->text('settings')->nullable();
+            $table->integer('category_id');
+            $table->string('filter_type')->nullable();
+            $table->boolean('show_as_filter')->nullable();
         });
     }
     

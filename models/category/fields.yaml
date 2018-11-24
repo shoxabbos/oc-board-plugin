@@ -18,37 +18,37 @@ tabs:
             label: Parent
             span: auto
             type: dropdown
-            tab: 'Tab 1'
-        desc:
-            label: Desc
-            size: large
-            span: auto
-            type: textarea
-            tab: 'Tab 1'
-        is_active:
-            label: 'IS Active'
-            span: auto
-            type: switch
-            tab: 'Tab 1'
+            tab: 'Main data'
         seo_title:
             label: 'Seo title'
-            span: full
-            type: text
-            tab: 'Tab 2'
+            size: ''
+            span: right
+            type: textarea
+            tab: 'Main data'
+        thumb:
+            label: Thumb
+            mode: image
+            useCaption: true
+            thumbOptions:
+                mode: crop
+                extension: auto
+            span: auto
+            type: fileupload
+            tab: 'Main data'
         seo_desc:
             label: 'Seo desc'
-            size: large
-            span: auto
+            size: ''
+            span: right
             type: textarea
-            tab: 'Tab 2'
+            tab: 'Main data'
         seo_keys:
             label: 'Seo keys'
-            size: large
-            span: auto
+            size: ''
+            span: right
             type: textarea
-            tab: 'Tab 2'
-        partial1:
+            tab: 'Main data'
+        properties:
             span: full
-            path: $/shohabbos/board/controllers/categories/_relation_properties.htm
+            path: $/shohabbos/board/controllers/categories/_field_properties.htm
             type: partial
-            tab: 'Tab 3'
+            tab: Properties

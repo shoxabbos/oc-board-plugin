@@ -9,10 +9,6 @@ class Post extends Model
 {
     use \October\Rain\Database\Traits\Validation;
     
-    use \October\Rain\Database\Traits\SoftDelete;
-
-    protected $dates = ['deleted_at'];
-
 
     /**
      * @var string The database table used by the model.
@@ -25,15 +21,10 @@ class Post extends Model
     public $rules = [
     ];
 
-    public $attachMany = [
-        'images' => 'System\Models\File'
-    ];
-
-    public function getCategoryIdOptions() {
-        return Category::lists('name', 'id');
-    }
-
     public $belongsTo = [
-        'user' => 'RainLab\User\Models\User'
+        'user' => 'RainLab\User\Models\User',
+        'category' => Category::class
     ];
+
+
 }

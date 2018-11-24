@@ -1,16 +1,22 @@
 fields:
-    is_active:
-        label: 'Is active'
+    label:
+        label: Label
         span: auto
-        type: switch
-    is_translatable:
-        label: 'Is translatable'
-        span: auto
-        type: checkbox
+        required: 1
+        type: text
     name:
         label: Name
         span: auto
+        disabled: 0
+        hidden: 0
         required: 1
+        preset:
+            field: label
+            type: slug
+        type: text
+    comment:
+        label: Comment
+        span: auto
         type: text
     type:
         label: Type
@@ -32,55 +38,35 @@ fields:
         span: auto
         required: 1
         type: dropdown
-    external_id:
-        label: 'External ID'
-        span: auto
-        type: text
-    code:
-        label: Code
-        span: auto
-        type: text
-    measure:
-        label: Measure
-        span: auto
-        type: text
-    tab_name:
-        label: 'Tab name'
-        span: auto
-        type: text
-    'settings[datepicker]':
-        label: 'Property mode'
+    filter_type:
+        label: 'Filter type'
         options:
-            date: Date
-            datetime: 'Date and time'
-            time: Time
-        span: right
-        trigger:
-            action: show
-            field: type
-            condition: 'value[date]'
+            switch: 'SWITCH - filter by one value from switch button'
+            select: 'SELECT -  filter by one value from select'
+            checkbox: 'CHECKBOX - filter by several values from the list'
+            between: 'Filter by range'
+            select_between: 'Filter by range from select'
+        span: auto
         type: dropdown
     values:
-        span: right
-        path: $/shohabbos/board/controllers/properties/_relation_values.htm
+        label: Values
+        prompt: 'Add new item'
+        span: full
         trigger:
             action: show
             field: type
             condition: 'value[checkbox] value[tag_list] value[select] value[radio] value[balloon_selector]'
-        type: partial
-    desc:
-        label: Description
-        size: large
-        span: left
-        type: textarea
-    'settings[mediafinder]':
-        label: 'Property mode'
-        options:
-            file: File
-            image: Image
-        span: right
-        trigger:
-            action: show
-            field: type
-            condition: 'value[mediafinder]'
-        type: dropdown
+        type: repeater
+        form:
+            fields:
+                label:
+                    label: Label
+                    span: auto
+                    type: text
+                value:
+                    label: Value
+                    span: auto
+                    preset:
+                        field: text1
+                        type: ''
+                    type: text

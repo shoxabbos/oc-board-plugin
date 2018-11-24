@@ -5,43 +5,24 @@ columns:
     name:
         label: name
         type: text
+    label:
+        label: label
+        type: text
+    comment:
+        label: comment
+        type: text
     type:
         label: type
-        type: text
-    desc:
-        label: desc
-        type: text
-    measure:
-        label: measure
-        type: text
-    code:
-        label: code
-        type: text
-    external_id:
-        label: external_id
-        type: number
-    is_translatable:
-        label: is_translatable
-        type: text
-    tab_name:
-        label: tab_name
-        type: text
-    is_active:
-        label: is_active
         type: text
     settings:
         label: settings
         type: text
-        invisible: true
-    created_at:
-        label: created_at
-        type: datetime
-        invisible: true
-    updated_at:
-        label: updated_at
-        type: datetime
-        invisible: true
-    deleted_at:
-        label: deleted_at
-        type: datetime
-        invisible: true
+    category_id:
+        label: category_id
+        type: number
+    filter_type:
+        label: filter_type
+        type: text
+    show_as_filter:
+        label: show_as_filter
+        type: text

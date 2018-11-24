@@ -12,12 +12,12 @@ class BuilderTableCreateShohabbosBoardCategories extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned();
             $table->string('name');
-            $table->string('desc');
-            $table->string('seo_title')->nullable();
+            $table->string('slug');
+            $table->integer('sort');
+            $table->integer('parent_id')->unsigned();
             $table->string('seo_desc')->nullable();
             $table->string('seo_keys')->nullable();
-            $table->integer('parent_id')->nullable();
-            $table->boolean('is_active')->default(0);
+            $table->string('seo_title')->nullable();
         });
     }
     

@@ -11,15 +11,16 @@ class BuilderTableCreateShohabbosBoardPosts extends Migration
         {
             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned();
+            $table->integer('user_id')->unsigned();
+            $table->integer('category_id')->unsigned();
+            $table->integer('location_id')->unsigned();
             $table->string('title');
+            $table->string('slug');
             $table->text('content');
-            $table->integer('user_id');
-            $table->integer('category_id');
-            $table->integer('location_id');
+            $table->string('contact_name');
             $table->string('phone');
             $table->string('email');
-            $table->string('contact_name');
-            $table->string('status');
+            $table->integer('views')->default(0);
         });
     }
     

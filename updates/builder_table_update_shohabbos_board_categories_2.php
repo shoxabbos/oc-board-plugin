@@ -9,7 +9,7 @@ class BuilderTableUpdateShohabbosBoardCategories2 extends Migration
     {
         Schema::table('shohabbos_board_categories', function($table)
         {
-            $table->string('slug');
+            $table->integer('parent_id')->nullable()->change();
         });
     }
     
@@ -17,7 +17,7 @@ class BuilderTableUpdateShohabbosBoardCategories2 extends Migration
     {
         Schema::table('shohabbos_board_categories', function($table)
         {
-            $table->dropColumn('slug');
+            $table->integer('parent_id')->nullable(false)->change();
         });
     }
 }

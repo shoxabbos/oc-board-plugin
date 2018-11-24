@@ -9,9 +9,7 @@ class BuilderTableUpdateShohabbosBoardProperties extends Migration
     {
         Schema::table('shohabbos_board_properties', function($table)
         {
-            $table->timestamp('created_at')->nullable();
-            $table->timestamp('updated_at')->nullable();
-            $table->timestamp('deleted_at')->nullable();
+            $table->text('values')->nullable();
         });
     }
     
@@ -19,9 +17,7 @@ class BuilderTableUpdateShohabbosBoardProperties extends Migration
     {
         Schema::table('shohabbos_board_properties', function($table)
         {
-            $table->dropColumn('created_at');
-            $table->dropColumn('updated_at');
-            $table->dropColumn('deleted_at');
+            $table->dropColumn('values');
         });
     }
 }

@@ -5,8 +5,8 @@
 properties:
     label: Property
     view:
-        list: $/shohabbos/board/models/categoryproperty/columns.yaml
+        list: $/shohabbos/board/models/property/columns.yaml
         toolbarButtons: create|delete
     manage:
-        form: $/shohabbos/board/models/categoryproperty/fields.yaml
+        form: $/shohabbos/board/models/property/fields.yaml
         recordsPerPage: 10

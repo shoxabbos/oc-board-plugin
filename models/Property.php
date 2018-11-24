@@ -9,9 +9,11 @@ class Property extends Model
 {
     use \October\Rain\Database\Traits\Validation;
     
-    use \October\Rain\Database\Traits\SoftDelete;
-
-    protected $dates = ['deleted_at'];
+    /*
+     * Disable timestamps by default.
+     * Remove this line if timestamps are defined in the database table.
+     */
+    public $timestamps = false;
 
 
     /**
@@ -26,11 +28,16 @@ class Property extends Model
     ];
 
     public $jsonable = [
-        'settings'
+        'values'
     ];
 
-    public $hasMany = [
-        'values' => 'Shohabbos\Board\Models\PropertyValue'
+    public $belongs = [
+        'category' => Category::class
     ];
-    
+
+    public function getCategoryIdOptions() {
+        return Category::lists('name', 'id');
+    }
+
+
 }

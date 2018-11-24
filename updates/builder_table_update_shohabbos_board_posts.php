@@ -11,7 +11,6 @@ class BuilderTableUpdateShohabbosBoardPosts extends Migration
         {
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
-            $table->timestamp('deleted_at')->nullable();
         });
     }
     
@@ -21,7 +20,6 @@ class BuilderTableUpdateShohabbosBoardPosts extends Migration
         {
             $table->dropColumn('created_at');
             $table->dropColumn('updated_at');
-            $table->dropColumn('deleted_at');
         });
     }
 }

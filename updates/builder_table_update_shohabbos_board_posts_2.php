@@ -9,7 +9,8 @@ class BuilderTableUpdateShohabbosBoardPosts2 extends Migration
     {
         Schema::table('shohabbos_board_posts', function($table)
         {
-            $table->string('slug');
+            $table->integer('user_id')->nullable()->change();
+            $table->integer('location_id')->nullable()->change();
         });
     }
     
@@ -17,7 +18,8 @@ class BuilderTableUpdateShohabbosBoardPosts2 extends Migration
     {
         Schema::table('shohabbos_board_posts', function($table)
         {
-            $table->dropColumn('slug');
+            $table->integer('user_id')->nullable(false)->change();
+            $table->integer('location_id')->nullable(false)->change();
         });
     }
 }

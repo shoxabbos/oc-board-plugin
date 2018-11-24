@@ -1,74 +1,38 @@
 1.0.1:
     - 'Initialize plugin.'
 1.0.2:
-    - 'Created table shohabbos_board_categories'
-    - builder_table_create_shohabbos_board_categories.php
-1.0.3:
-    - 'Created table shohabbos_board_posts'
-    - builder_table_create_shohabbos_board_posts.php
-1.0.4:
-    - 'Updated table shohabbos_board_categories'
-    - builder_table_update_shohabbos_board_categories.php
-1.0.5:
-    - 'Updated table shohabbos_board_categories'
-    - builder_table_update_shohabbos_board_categories_2.php
-1.0.6:
-    - 'Updated table shohabbos_board_categories'
-    - builder_table_update_shohabbos_board_categories_3.php
-1.0.7:
     - 'Created table shohabbos_board_properties'
     - builder_table_create_shohabbos_board_properties.php
-1.0.8:
+1.0.3:
     - 'Created table shohabbos_board_property_values'
     - builder_table_create_shohabbos_board_property_values.php
-1.0.9:
-    - 'Updated table shohabbos_board_property_values'
-    - builder_table_update_shohabbos_board_property_values.php
-1.0.10:
-    - 'Created table shohabbos_board_category_properties'
-    - builder_table_create_shohabbos_board_category_properties.php
-1.0.11:
-    - 'Updated table shohabbos_board_category_properties'
-    - builder_table_update_shohabbos_board_category_properties.php
-1.0.12:
-    - 'Updated table shohabbos_board_category_properties'
-    - builder_table_update_shohabbos_board_category_properties_2.php
-1.0.13:
-    - 'Created table shohabbos_board_product_properties'
-    - builder_table_create_shohabbos_board_product_properties.php
-1.0.14:
+1.0.4:
+    - 'Created table shohabbos_board_categories'
+    - builder_table_create_shohabbos_board_categories.php
+1.0.5:
+    - 'Created table shohabbos_board_posts'
+    - builder_table_create_shohabbos_board_posts.php
+1.0.6:
     - 'Updated table shohabbos_board_posts'
     - builder_table_update_shohabbos_board_posts.php
-1.0.15:
+1.0.7:
+    - 'Updated table shohabbos_board_categories'
+    - builder_table_update_shohabbos_board_categories.php
+1.0.8:
+    - 'Updated table shohabbos_board_categories'
+    - builder_table_update_shohabbos_board_categories_2.php
+1.0.9:
+    - 'Updated table shohabbos_board_categories'
+    - builder_table_update_shohabbos_board_categories_3.php
+1.0.10:
+    - 'Drop table shohabbos_board_property_values'
+    - builder_table_delete_shohabbos_board_property_values.php
+1.0.11:
     - 'Updated table shohabbos_board_properties'
     - builder_table_update_shohabbos_board_properties.php
-1.0.16:
-    - 'Updated table shohabbos_board_property_values'
-    - builder_table_update_shohabbos_board_property_values_2.php
-1.0.17:
-    - 'Updated table shohabbos_board_category_properties'
-    - builder_table_update_shohabbos_board_category_properties_3.php
-1.0.18:
-    - 'Updated table shohabbos_board_product_properties'
-    - builder_table_update_shohabbos_board_post_properties.php
-1.0.19:
-    - 'Updated table shohabbos_board_properties'
-    - builder_table_update_shohabbos_board_properties_2.php
-1.0.20:
-    - 'Updated table shohabbos_board_categories'
-    - builder_table_update_shohabbos_board_categories_4.php
-1.0.21:
-    - 'Updated table shohabbos_board_category_properties'
-    - builder_table_update_shohabbos_board_category_properties_4.php
-1.0.22:
+1.0.12:
     - 'Updated table shohabbos_board_posts'
     - builder_table_update_shohabbos_board_posts_2.php
-1.0.23:
-    - 'Created table shohabbos_board_locations'
-    - builder_table_create_shohabbos_board_locations.php
-1.0.24:
-    - 'Updated table shohabbos_board_posts'
-    - builder_table_update_shohabbos_board_posts_3.php
-1.0.25:
-    - 'Updated table shohabbos_board_posts'
-    - builder_table_update_shohabbos_board_posts_4.php
+1.0.13:
+    - 'Created table shohabbos_board_post_properties'
+    - builder_table_create_shohabbos_board_post_properties.php

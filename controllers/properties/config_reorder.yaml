@@ -1,4 +1,0 @@
-title: Properties
-modelClass: Shohabbos\Board\Models\Property
-toolbar:
-    buttons: reorder_toolbar
