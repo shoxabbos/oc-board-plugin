@@ -11,6 +11,9 @@ permissions:
     manage_posts:
         tab: 'shohabbos.board::lang.plugin.name'
         label: 'Manage posts'
+    manage_properties:
+        tab: 'shohabbos.board::lang.plugin.name'
+        label: 'Manage properties'
 navigation:
     board:
         label: Board
@@ -32,3 +35,9 @@ navigation:
                 icon: icon-sitemap
                 permissions:
                     - manage_categories
+            board-properties:
+                label: Properties
+                url: shohabbos/board/properties
+                icon: icon-sitemap
+                permissions:
+                    - manage_properties

@@ -1,0 +1,12 @@
+# ===================================
+#  Relation Behavior Config
+# ===================================
+
+properties:
+    label: Property Item
+    view:
+        list: $/shohabbos/board/models/postproperty/columns.yaml
+        toolbarButtons: create|delete
+    manage:
+        form: $/shohabbos/board/models/postproperty/fields.yaml
+        recordsPerPage: 10

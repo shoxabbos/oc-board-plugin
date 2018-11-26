@@ -1,0 +1,15 @@
+columns:
+    id:
+        label: id
+        type: number
+        invisible: true
+    property_id:
+        label: property_id
+        type: number
+        invisible: true
+    label:
+        label: key
+        type: text
+    value:
+        label: value
+        type: text

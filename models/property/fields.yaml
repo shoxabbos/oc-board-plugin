@@ -21,17 +21,17 @@ fields:
     type:
         label: Type
         options:
-            input: 'Text field (input)'
+            text: 'Text field (text)'
             number: 'Text field (number)'
             textarea: 'Text field (textarea)'
             rich_editor: 'Text field (wysiwyg)'
             single_checkbox: 'Single checkbox'
             switch: Switch
-            checkbox: 'Checkbox list (checkbox)'
+            checkboxlist: 'Checkbox list (checkbox)'
             tag_list: 'Tag list'
-            select: Select
+            dropdown: Dropdown
             radio: 'Radio button'
-            balloon_selector: 'Balloon selector'
+            balloon-selector: 'Balloon selector'
             date: 'Date picker (datetime)'
             colorpicker: 'Color picker (colorpicker)'
             mediafinder: File
@@ -49,24 +49,33 @@ fields:
         span: auto
         type: dropdown
     values:
-        label: Values
-        prompt: 'Add new item'
-        span: full
+        span: auto
+        path: field_values
         trigger:
             action: show
             field: type
-            condition: 'value[checkbox] value[tag_list] value[select] value[radio] value[balloon_selector]'
-        type: repeater
-        form:
-            fields:
-                label:
-                    label: Label
-                    span: auto
-                    type: text
-                value:
-                    label: Value
-                    span: auto
-                    preset:
-                        field: text1
-                        type: ''
-                    type: text
+            condition: 'value[checkboxlist] value[tag_list] value[dropdown] value[radio] value[balloon-selector]'
+        type: partial
+    'settings[datepicker]':
+        label: 'Property mode'
+        options:
+            date: Date
+            datetime: 'Date and time'
+            time: Time
+        span: auto
+        trigger:
+            action: show
+            field: type
+            condition: 'value[date]'
+        type: dropdown
+    'settings[mediafinder]':
+        label: 'Property mode'
+        options:
+            file: File
+            image: Image
+        span: auto
+        trigger:
+            action: show
+            field: type
+            condition: 'value[mediafinder]'
+        type: dropdown

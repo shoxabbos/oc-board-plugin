@@ -6,7 +6,8 @@ properties:
     label: Property
     view:
         list: $/shohabbos/board/models/property/columns.yaml
-        toolbarButtons: create|delete
+        toolbarButtons: link|unlink
     manage:
         form: $/shohabbos/board/models/property/fields.yaml
         recordsPerPage: 10
+        showSearch: true

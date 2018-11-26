@@ -13,6 +13,14 @@ class Category extends Model
     
     const SORT_ORDER = 'sort';
     const PARENT_ID = 'parent_id';
+    
+    public $implement = ['RainLab.Translate.Behaviors.TranslatableModel'];
+
+    public $translatable = [
+        'name', 'seo_title',
+        'seo_desc', 'seo_keys',
+        'slug'
+    ];
 
     /*
      * Disable timestamps by default.
@@ -32,21 +40,28 @@ class Category extends Model
     public $rules = [
     ];
 
-    public $belongsTo = [
-        'parent'    => [self::class, 'key' => 'parent_id'],
-    ];
-    
-    public $hasMany = [
-        'children'    => [self::class, 'key' => 'parent_id'],
-        'properties' => Property::class,
-        'posts' => Post::class
-    ];
-
     public $attachOne = [
         'thumb' => 'System\Models\File'
     ];
 
+    public $hasMany = [
+        'children'    => [self::class, 'key' => 'parent_id'],
+        'posts' => Post::class
+    ];
+
+    public $belongsTo = [
+        'parent'    => [self::class, 'key' => 'parent_id'],
+    ];
+
+    public $belongsToMany = [
+        'properties' => [Property::class, 'table' => 'shohabbos_board_category_property']
+    ];
+    
+
     public function getParentIdOptions() {
-        return self::where('parent_id', null)->lists('name', 'id');    
+        return self::where('parent_id', null)
+            ->where('id', '!=', $this->id)
+            ->lists('name', 'id');    
     }
+
 }

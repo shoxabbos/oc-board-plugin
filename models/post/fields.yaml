@@ -47,8 +47,3 @@ tabs:
             span: auto
             type: number
             tab: 'Tab 1'
-        properties:
-            span: full
-            path: properties
-            type: partial
-            tab: 'Tab 2'

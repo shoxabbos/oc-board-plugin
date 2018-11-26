@@ -25,6 +25,9 @@ class Post extends Model
         'user' => 'RainLab\User\Models\User',
         'category' => Category::class
     ];
-
+    
+    public $hasMany = [
+        'properties' => PostProperty::class,
+    ];
 
 }

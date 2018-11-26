@@ -2,18 +2,22 @@ columns:
     id:
         label: id
         type: number
-    name:
-        label: name
-        type: text
     label:
         label: label
         type: text
+        searchable: true
+    name:
+        label: name
+        type: text
+        searchable: true
     comment:
         label: comment
         type: text
+        searchable: true
     type:
         label: type
         type: text
+        searchable: true
     settings:
         label: settings
         type: text
