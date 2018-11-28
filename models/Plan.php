@@ -5,7 +5,7 @@ use Model;
 /**
  * Model
  */
-class PostProperty extends Model
+class Plan extends Model
 {
     use \October\Rain\Database\Traits\Validation;
     
@@ -15,17 +15,23 @@ class PostProperty extends Model
      */
     public $timestamps = false;
 
-    public $fillable = ['category_id', 'property_id', 'value', 'post_id'];
-
 
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'shohabbos_board_post_properties';
+    public $table = 'shohabbos_board_plans';
 
     /**
      * @var array Validation rules
      */
     public $rules = [
     ];
+
+    public function getTypeOptions() {
+        return [
+            'up' => 'Up',
+            'top' => 'Top',
+            'vip' => 'Vip'
+        ];
+    }
 }

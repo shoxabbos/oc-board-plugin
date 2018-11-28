@@ -10,3 +10,12 @@ properties:
     manage:
         form: $/shohabbos/board/models/postproperty/fields.yaml
         recordsPerPage: 10
+plans:
+    label: Plan
+    view:
+        list: $/shohabbos/board/models/plan/columns.yaml
+        toolbarButtons: link|unlink
+    manage:
+        form: $/shohabbos/board/models/plan/fields.yaml
+        recordsPerPage: 10
+        showSearch: true

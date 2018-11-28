@@ -5,9 +5,6 @@ columns:
     post_id:
         label: post_id
         type: number
-    category_id:
-        label: category_id
-        type: number
     key:
         label: key
         type: text

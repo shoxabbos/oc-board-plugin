@@ -14,6 +14,9 @@ permissions:
     manage_properties:
         tab: 'shohabbos.board::lang.plugin.name'
         label: 'Manage properties'
+    mana_plans:
+        tab: 'shohabbos.board::lang.plugin.name'
+        label: 'Manage plans'
 navigation:
     board:
         label: Board
@@ -41,3 +44,9 @@ navigation:
                 icon: icon-sitemap
                 permissions:
                     - manage_properties
+            board-plans:
+                label: Plans
+                url: shohabbos/board/plans
+                icon: icon-sitemap
+                permissions:
+                    - mana_plans

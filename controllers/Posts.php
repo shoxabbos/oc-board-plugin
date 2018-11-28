@@ -10,12 +10,13 @@ class Posts extends Controller
     public $implement = [
         'Backend\Behaviors\ListController',
         'Backend\Behaviors\FormController',
-        //'Backend\Behaviors\RelationController',
+        'Backend\Behaviors\RelationController',
     ];
     
     public $listConfig = 'config_list.yaml';
     public $formConfig = 'config_form.yaml';
     public $relationConfig = 'config_relation.yaml';
+
 
     public $requiredPermissions = [
         'manage_posts' 
@@ -27,45 +28,45 @@ class Posts extends Controller
         BackendMenu::setContext('Shohabbos.Board', 'board', 'board-posts');
     }
 
-    public function formExtendModel($model)
+    
+    public function formAfterSave($model)
     {
-        /*
-         * Init proxy field model if we are creating the model
-         */
-        if ($this->action == 'update') {
-            $model->properties[] = new PostProperty;
-            $model->properties[] = new PostProperty;
-            $model->properties[] = new PostProperty;
-            $model->properties[] = new PostProperty;
-        }
+        $model->properties()->delete();
 
-        return $model;
-    }
+        $properties = [];
+        foreach($model->attrs as $key => $value) {
+            
+            $model->properties()->create([
+                'property_id' => $key,
+                'category_id' => $model->category_id,
+                'value' => is_array($value) ? json_encode($value) : $value,
+            ]);
+            
+        }
+    } 
+
+
 
     public function formExtendFields($form)
     {
-        $properties = $form->model->category->properties;
+    
+        if ($form->model->category) {
+            $properties = $form->model->category->properties;
 
-        foreach($properties as $key => $property) {
-            $form->addTabFields([
-                "properties[{$key}][value]" => [
-                    'type' => $property->type,
-                    'label'   => $property->label,
-                    'default' => 'shox',
-                    'comment' => $property->comment,
-                    'span' => 'auto',
-                    'options' => $property->values->lists('label', 'value')
-                ],
-            ]);
-        
-            $form->addTabFields([
-                "properties[{$key}][key]" => [
-                    'label' => 'Key',
-                    'span' => 'auto',
-                ],
-            ]);
-
+            foreach($properties as $key => $property) {                
+                $form->addTabFields([
+                    "attrs[{$property->id}]" => [
+                        'type' => $property->type,
+                        'label'   => $property->label,
+                        'comment' => $property->comment,
+                        'span' => 'auto',
+                        'options' => $property->values->lists('label', 'value'),
+                    ],
+                ]);
+            }
         }
+
+        
     }
 
 }

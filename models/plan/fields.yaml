@@ -1,0 +1,27 @@
+fields:
+    name:
+        label: Title
+        span: auto
+        required: 1
+        type: text
+    type:
+        label: Type
+        span: auto
+        required: 1
+        type: dropdown
+    description:
+        label: Desc
+        size: large
+        span: auto
+        required: 1
+        type: textarea
+    amount:
+        label: Amount
+        span: auto
+        required: 1
+        type: number
+    days:
+        label: Days
+        span: auto
+        required: 1
+        type: number

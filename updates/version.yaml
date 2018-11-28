@@ -57,3 +57,27 @@
 1.0.20:
     - 'Updated table shohabbos_board_property_values'
     - builder_table_update_shohabbos_board_property_values_2.php
+1.0.21:
+    - 'Updated table shohabbos_board_post_properties'
+    - builder_table_update_shohabbos_board_post_properties.php
+1.0.22:
+    - 'Updated table shohabbos_board_post_properties'
+    - builder_table_update_shohabbos_board_post_properties_2.php
+1.0.23:
+    - 'Updated table shohabbos_board_posts'
+    - builder_table_update_shohabbos_board_posts_3.php
+1.0.24:
+    - 'Updated table shohabbos_board_post_properties'
+    - builder_table_update_shohabbos_board_post_properties_3.php
+1.0.25:
+    - 'Updated table shohabbos_board_post_properties'
+    - builder_table_update_shohabbos_board_post_properties_4.php
+1.0.26:
+    - 'Updated table shohabbos_board_posts'
+    - builder_table_update_shohabbos_board_posts_4.php
+1.0.27:
+    - 'Created table shohabbos_board_plans'
+    - builder_table_create_shohabbos_board_plans.php
+1.0.28:
+    - 'Created table shohabbos_board_post_plan'
+    - builder_table_create_shohabbos_board_post_plan.php

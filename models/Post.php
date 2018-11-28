@@ -15,10 +15,16 @@ class Post extends Model
      */
     public $table = 'shohabbos_board_posts';
 
+    public $jsonable = ['attrs'];
+
     /**
      * @var array Validation rules
      */
     public $rules = [
+    ];
+
+    public $attachMany = [
+        'images' => 'System\Models\File'
     ];
 
     public $belongsTo = [
@@ -26,8 +32,20 @@ class Post extends Model
         'category' => Category::class
     ];
     
+    public $belongsToMany = [
+        'plans' => [Plan::class, 'table' => 'shohabbos_board_post_plan']
+    ];
+    
     public $hasMany = [
         'properties' => PostProperty::class,
     ];
+
+    public function getStatusOptions() {
+        return [
+            'active' => 'Active',
+            'inactive' => 'Inactive',
+            'pending' => 'Pending',
+        ];
+    }
 
 }

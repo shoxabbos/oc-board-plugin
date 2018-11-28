@@ -1,0 +1,19 @@
+columns:
+    id:
+        label: id
+        type: number
+    name:
+        label: name
+        type: text
+    description:
+        label: description
+        type: text
+    days:
+        label: days
+        type: number
+    amount:
+        label: amount
+        type: number
+    type:
+        label: type
+        type: text

@@ -1,0 +1,5 @@
+title: Plans
+modelClass: Shohabbos\Board\Models\Plan
+nameFrom: sort
+toolbar:
+    buttons: reorder_toolbar
