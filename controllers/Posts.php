@@ -31,17 +31,19 @@ class Posts extends Controller
     
     public function formAfterSave($model)
     {
-        $model->properties()->delete();
+        if ($model->attrs) {
+            
+            $model->properties()->delete();
 
-        $properties = [];
-        foreach($model->attrs as $key => $value) {
-            
-            $model->properties()->create([
-                'property_id' => $key,
-                'category_id' => $model->category_id,
-                'value' => is_array($value) ? json_encode($value) : $value,
-            ]);
-            
+            $properties = [];
+            foreach($model->attrs as $key => $value) {
+                $model->properties()->create([
+                    'property_id' => $key,
+                    'category_id' => $model->category_id,
+                    'value' => is_array($value) ? json_encode($value) : $value,
+                ]);
+            }
+
         }
     } 
 

@@ -81,3 +81,6 @@
 1.0.28:
     - 'Created table shohabbos_board_post_plan'
     - builder_table_create_shohabbos_board_post_plan.php
+1.0.29:
+    - 'Add balance field to users table'
+    - migration1029.php
