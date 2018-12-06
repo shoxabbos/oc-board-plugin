@@ -1,12 +1,14 @@
-list: $/shohabbos/board/models/category/columns.yaml
-modelClass: Shohabbos\Board\Models\Category
 title: Categories
+modelClass: Shohabbos\Board\Models\Category
+list: $/shohabbos/board/models/category/columns.yaml
+recordUrl: 'shohabbos/board/categories/update/:id'
 noRecordsMessage: 'backend::lang.list.no_records'
+recordsPerPage: 20
 showSetup: true
 showCheckboxes: true
-recordsPerPage: 20
 toolbar:
     buttons: list_toolbar
     search:
         prompt: 'backend::lang.list.search_prompt'
-recordUrl: 'shohabbos/board/categories/update/:id'
+showTree: 1
+treeExpanded: 1

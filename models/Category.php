@@ -61,7 +61,7 @@ class Category extends Model
     public function getParentIdOptions() {
         return self::where('parent_id', null)
             ->where('id', '!=', $this->id)
-            ->lists('name', 'id');    
+            ->lists('name', 'id');
     }
 
     /**
