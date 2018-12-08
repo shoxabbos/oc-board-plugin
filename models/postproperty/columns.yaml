@@ -6,8 +6,8 @@ columns:
         label: post_id
         type: number
     key:
-        label: key
+        label: 'shohabbos.board::lang.postproperty.key'
         type: text
     value:
-        label: value
+        label: 'shohabbos.board::lang.postproperty.value'
         type: text

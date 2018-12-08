@@ -1,28 +1,28 @@
 columns:
     id:
-        label: id
+        label: ID
         type: number
     name:
-        label: name
+        label: 'shohabbos.board::lang.category.name'
         type: text
     slug:
-        label: slug
+        label: URL
         type: text
     sort:
         label: sort
         type: number
     parent_id:
-        label: parent_id
+        label: 'shohabbos.board::lang.category.parent_id'
         type: number
     seo_desc:
-        label: seo_desc
+        label: 'shohabbos.board::lang.category.seo_desc'
         type: text
         invisible: true
     seo_keys:
-        label: seo_keys
+        label: 'shohabbos.board::lang.category.seo_keys'
         type: text
         invisible: true
     seo_title:
-        label: seo_title
+        label: 'shohabbos.board::lang.category.seo_title'
         type: text
         invisible: true

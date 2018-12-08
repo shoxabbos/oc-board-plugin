@@ -154,7 +154,8 @@ class Post extends Model
          */
         if ($category !== null) {
             $category = Category::find($category);
-            $categories = $category->getAllChildrenAndSelf()->lists('id');
+            $categories = $category->getAllChildren()->lists('id');
+            $categories[] = $category->id;
             $query->whereIn('category_id', $categories);
         }
 

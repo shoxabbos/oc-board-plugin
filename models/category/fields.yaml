@@ -1,6 +1,6 @@
 fields:
     name:
-        label: Name
+        label: 'shohabbos.board::lang.category.name'
         span: auto
         required: 1
         type: text
@@ -15,40 +15,42 @@ fields:
 tabs:
     fields:
         parent_id:
-            label: Parent
+            label: 'shohabbos.board::lang.category.parent_id'
             span: auto
             type: dropdown
-            tab: 'Main data'
+            tab: 'shohabbos.board::lang.tabs.main'
         seo_title:
-            label: 'Seo title'
+            label: 'shohabbos.board::lang.category.seo_title'
             size: ''
             span: right
             type: textarea
-            tab: 'Main data'
+            tab: 'shohabbos.board::lang.tabs.main'
         thumb:
-            label: Thumb
+            label: 'shohabbos.board::lang.category.thumb'
             mode: image
+            imageWidth: '56'
+            imageHeight: '56'
             useCaption: true
             thumbOptions:
                 mode: crop
                 extension: auto
             span: auto
             type: fileupload
-            tab: 'Main data'
+            tab: 'shohabbos.board::lang.tabs.main'
         seo_desc:
-            label: 'Seo desc'
+            label: 'shohabbos.board::lang.category.seo_desc'
             size: ''
             span: right
             type: textarea
-            tab: 'Main data'
+            tab: 'shohabbos.board::lang.tabs.main'
         seo_keys:
-            label: 'Seo keys'
+            label: 'shohabbos.board::lang.category.seo_keys'
             size: ''
             span: right
             type: textarea
-            tab: 'Main data'
+            tab: 'shohabbos.board::lang.tabs.main'
         properties:
             span: full
             path: $/shohabbos/board/controllers/categories/_field_properties.htm
             type: partial
-            tab: Properties
+            tab: 'shohabbos.board::lang.tabs.properties'

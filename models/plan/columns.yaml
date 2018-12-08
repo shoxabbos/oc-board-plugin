@@ -3,17 +3,17 @@ columns:
         label: id
         type: number
     name:
-        label: name
+        label: 'shohabbos.board::lang.plan.name'
         type: text
     description:
-        label: description
+        label: 'shohabbos.board::lang.plan.desc'
         type: text
     days:
-        label: days
+        label: 'shohabbos.board::lang.plan.days'
         type: number
     amount:
-        label: amount
+        label: 'shohabbos.board::lang.plan.amount'
         type: number
     type:
-        label: type
+        label: 'shohabbos.board::lang.plan.type'
         type: text

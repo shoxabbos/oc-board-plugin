@@ -8,31 +8,31 @@ columns:
         relation: user
         valueFrom: name
     category_id:
-        label: category_id
+        label: 'shohabbos.board::lang.post.category_id'
         type: number
     location_id:
         label: location_id
         type: number
     title:
-        label: title
+        label: 'shohabbos.board::lang.post.title'
         type: text
     slug:
-        label: slug
+        label: URL
         type: text
     content:
-        label: content
+        label: 'shohabbos.board::lang.post.content'
         type: text
     contact_name:
-        label: contact_name
+        label: 'shohabbos.board::lang.post.contact_name'
         type: text
     phone:
-        label: phone
+        label: 'shohabbos.board::lang.post.phone'
         type: text
     email:
-        label: email
+        label: 'shohabbos.board::lang.post.email'
         type: text
     views:
-        label: views
+        label: 'shohabbos.board::lang.post.views'
         type: number
     created_at:
         label: created_at

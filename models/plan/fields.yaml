@@ -1,27 +1,27 @@
 fields:
     name:
-        label: Title
+        label: 'shohabbos.board::lang.plan.title'
         span: auto
         required: 1
         type: text
     type:
-        label: Type
+        label: 'shohabbos.board::lang.plan.type'
         span: auto
         required: 1
         type: dropdown
     description:
-        label: Desc
+        label: 'shohabbos.board::lang.plan.desc'
         size: large
         span: auto
         required: 1
         type: textarea
     amount:
-        label: Amount
+        label: 'shohabbos.board::lang.plan.amount'
         span: auto
         required: 1
         type: number
     days:
-        label: Days
+        label: 'shohabbos.board::lang.plan.days'
         span: auto
         required: 1
         type: number

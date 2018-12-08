@@ -3,30 +3,27 @@ columns:
         label: id
         type: number
     label:
-        label: label
+        label: 'shohabbos.board::lang.property.label'
         type: text
         searchable: true
     name:
-        label: name
+        label: 'shohabbos.board::lang.property.name'
         type: text
         searchable: true
     comment:
-        label: comment
+        label: 'shohabbos.board::lang.property.comment'
         type: text
         searchable: true
     type:
-        label: type
+        label: 'shohabbos.board::lang.property.type'
         type: text
         searchable: true
     settings:
-        label: settings
+        label: 'shohabbos.board::lang.property.settings'
         type: text
-    category_id:
-        label: category_id
-        type: number
     filter_type:
-        label: filter_type
+        label: 'shohabbos.board::lang.property.filter_type'
         type: text
     show_as_filter:
-        label: show_as_filter
+        label: 'shohabbos.board::lang.property.show_as_filter'
         type: text

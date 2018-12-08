@@ -1,11 +1,11 @@
 fields:
     label:
-        label: Label
+        label: 'shohabbos.board::lang.property.label'
         span: auto
         required: 1
         type: text
     name:
-        label: Name
+        label: 'shohabbos.board::lang.property.name'
         span: auto
         disabled: 0
         hidden: 0
@@ -15,11 +15,11 @@ fields:
             type: slug
         type: text
     comment:
-        label: Comment
+        label: 'shohabbos.board::lang.property.comment'
         span: auto
         type: text
     type:
-        label: Type
+        label: 'shohabbos.board::lang.property.type'
         options:
             text: 'Text field (text)'
             number: 'Text field (number)'
@@ -39,7 +39,7 @@ fields:
         required: 1
         type: dropdown
     filter_type:
-        label: 'Filter type'
+        label: 'shohabbos.board::lang.property.filter_type'
         options:
             switch: 'SWITCH - filter by one value from switch button'
             select: 'SELECT -  filter by one value from select'
@@ -57,7 +57,7 @@ fields:
             condition: 'value[checkboxlist] value[tag_list] value[dropdown] value[radio] value[balloon-selector]'
         type: partial
     'settings[datepicker]':
-        label: 'Property mode'
+        label: 'shohabbos.board::lang.property.property_mode'
         options:
             date: Date
             datetime: 'Date and time'
@@ -69,7 +69,7 @@ fields:
             condition: 'value[date]'
         type: dropdown
     'settings[mediafinder]':
-        label: 'Property mode'
+        label: 'shohabbos.board::lang.property.property_mode'
         options:
             file: File
             image: Image

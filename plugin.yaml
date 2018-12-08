@@ -19,7 +19,7 @@ permissions:
         label: 'Manage plans'
 navigation:
     board:
-        label: Board
+        label: 'shohabbos.board::lang.menu.main_menu'
         url: shohabbos/board/posts
         icon: icon-life-ring
         permissions:
@@ -27,25 +27,25 @@ navigation:
             - manage_categories
         sideMenu:
             board-posts:
-                label: Posts
+                label: 'shohabbos.board::lang.menu.posts'
                 url: shohabbos/board/posts
                 icon: icon-sitemap
                 permissions:
                     - manage_posts
             board-categories:
-                label: Categories
+                label: 'shohabbos.board::lang.menu.categories'
                 url: shohabbos/board/categories
                 icon: icon-sitemap
                 permissions:
                     - manage_categories
             board-properties:
-                label: Properties
+                label: 'shohabbos.board::lang.menu.properties'
                 url: shohabbos/board/properties
                 icon: icon-sitemap
                 permissions:
                     - manage_properties
             board-plans:
-                label: Plans
+                label: 'shohabbos.board::lang.menu.plans'
                 url: shohabbos/board/plans
                 icon: icon-sitemap
                 permissions:

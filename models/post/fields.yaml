@@ -1,6 +1,6 @@
 fields:
     title:
-        label: Title
+        label: 'shohabbos.board::lang.post.title'
         span: auto
         required: 1
         type: text
@@ -15,7 +15,7 @@ fields:
 tabs:
     fields:
         images:
-            label: Images
+            label: 'shohabbos.board::lang.post.images'
             mode: image
             useCaption: true
             thumbOptions:
@@ -23,48 +23,48 @@ tabs:
                 extension: auto
             span: right
             type: fileupload
-            tab: 'Tab 1'
+            tab: 'shohabbos.board::lang.post.tab_main'
         category:
-            label: Category
+            label: 'shohabbos.board::lang.post.category_id'
             nameFrom: name
             descriptionFrom: description
             span: left
             type: relation
-            tab: 'Tab 1'
+            tab: 'shohabbos.board::lang.post.tab_main'
         content:
-            label: Content
+            label: 'shohabbos.board::lang.post.content'
             size: large
             span: left
             type: textarea
-            tab: 'Tab 1'
+            tab: 'shohabbos.board::lang.post.tab_main'
         phone:
-            label: Phone
+            label: 'shohabbos.board::lang.post.phone'
             span: left
             type: text
-            tab: 'Tab 1'
+            tab: 'shohabbos.board::lang.post.tab_main'
         email:
-            label: Email
+            label: 'shohabbos.board::lang.post.email'
             span: left
             type: text
-            tab: 'Tab 1'
+            tab: 'shohabbos.board::lang.post.tab_main'
         contact_name:
-            label: 'Contact name'
+            label: 'shohabbos.board::lang.post.contact_name'
             span: left
             type: text
-            tab: 'Tab 1'
+            tab: 'shohabbos.board::lang.post.tab_main'
         views:
-            label: Views
+            label: 'shohabbos.board::lang.post.views'
             span: left
             type: number
-            tab: 'Tab 1'
+            tab: 'shohabbos.board::lang.post.tab_main'
         status:
-            label: Status
+            label: 'shohabbos.board::lang.post.status'
             span: auto
             required: 1
             type: dropdown
-            tab: 'Tab 1'
+            tab: 'shohabbos.board::lang.post.tab_main'
         plans:
             span: full
             path: field_plans
             type: partial
-            tab: Plans
+            tab: 'shohabbos.board::lang.post.tab_plans'
