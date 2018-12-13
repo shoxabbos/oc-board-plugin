@@ -84,3 +84,21 @@
 1.0.29:
     - 'Add balance field to users table'
     - migration1029.php
+1.0.30:
+    - 'Updated table shohabbos_board_posts'
+    - builder_table_update_shohabbos_board_posts_5.php
+1.0.31:
+    - 'Created table shohabbos_board_locations'
+    - builder_table_create_shohabbos_board_locations.php
+1.0.32:
+    - 'Updated table shohabbos_board_locations'
+    - builder_table_update_shohabbos_board_locations.php
+1.0.33:
+    - 'Updated table shohabbos_board_locations'
+    - builder_table_update_shohabbos_board_locations_2.php
+1.0.34:
+    - 'Updated table shohabbos_board_posts'
+    - builder_table_update_shohabbos_board_posts_6.php
+1.0.35:
+    - 'Add location_id to users'
+    - migration1035.php

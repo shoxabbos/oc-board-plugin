@@ -1,0 +1,11 @@
+fields:
+    name:
+        label: 'shohabbos.board::lang.location.name'
+        span: auto
+        type: text
+    parent:
+        label: 'shohabbos.board::lang.location.parent_id'
+        nameFrom: name
+        descriptionFrom: description
+        span: auto
+        type: relation

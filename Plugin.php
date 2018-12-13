@@ -1,13 +1,25 @@
 <?php namespace Shohabbos\Board;
 
-use System\Classes\PluginBase;
 use \Event;
+use Rainlab\User\Models\User;
+use System\Classes\PluginBase;
 
 class Plugin extends PluginBase
 {
 
+    public $require = [
+        'Rainlab.User',
+    ];
+
     public function boot()
     {
+
+        // Local event hook that affects all users
+        User::extend(function($model) {
+            $model->hasOne['location'] = 'Shohabbos\Board\Models\Location';
+        });
+
+
         // Extend all backend list usage
         Event::listen('backend.list.extendColumns', function($widget) {
 
@@ -24,6 +36,9 @@ class Plugin extends PluginBase
             $widget->addColumns([
                 'balance' => [
                     'label' => 'Balance'
+                ],
+                'location_id' => [
+                    'label' => 'Location'
                 ]
             ]);
 
@@ -40,6 +55,7 @@ class Plugin extends PluginBase
         return [
             'Shohabbos\Board\Components\Post' => 'boardPost',
             'Shohabbos\Board\Components\Posts' => 'boardPosts',
+            'Shohabbos\Board\Components\PostForm' => 'boardPostForm',
             'Shohabbos\Board\Components\Categories' => 'boardCategories',
         ];
     }

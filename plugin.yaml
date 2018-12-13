@@ -14,9 +14,12 @@ permissions:
     manage_properties:
         tab: 'shohabbos.board::lang.plugin.name'
         label: 'Manage properties'
-    mana_plans:
+    manage_plans:
         tab: 'shohabbos.board::lang.plugin.name'
         label: 'Manage plans'
+    manage_locations:
+        tab: 'shohabbos.board::lang.plugin.name'
+        label: 'Manage locations'
 navigation:
     board:
         label: 'shohabbos.board::lang.menu.main_menu'
@@ -50,3 +53,9 @@ navigation:
                 icon: icon-sitemap
                 permissions:
                     - mana_plans
+            side-menu-item:
+                label: 'shohabbos.board::lang.menu.locations'
+                url: shohabbos/board/locations
+                icon: icon-sitemap
+                permissions:
+                    - manage_locations

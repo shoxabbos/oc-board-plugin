@@ -14,7 +14,7 @@ class Category extends Model
     const SORT_ORDER = 'sort';
     const PARENT_ID = 'parent_id';
     
-    public $implement = ['RainLab.Translate.Behaviors.TranslatableModel'];
+    public $implement = ['@RainLab.Translate.Behaviors.TranslatableModel'];
 
     public $translatable = [
         'name', 'seo_title',

@@ -1,0 +1,10 @@
+name: Locations
+form: $/shohabbos/board/models/location/fields.yaml
+modelClass: Shohabbos\Board\Models\Location
+defaultRedirect: shohabbos/board/locations
+create:
+    redirect: 'shohabbos/board/locations/update/:id'
+    redirectClose: shohabbos/board/locations
+update:
+    redirect: shohabbos/board/locations
+    redirectClose: shohabbos/board/locations

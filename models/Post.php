@@ -8,14 +8,15 @@ use Model;
 class Post extends Model
 {
     use \October\Rain\Database\Traits\Validation;
+    use \October\Rain\Database\Traits\Sluggable;
     
-
-    /**
-     * @var string The database table used by the model.
-     */
     public $table = 'shohabbos_board_posts';
 
     public $jsonable = ['attrs'];
+
+    public $guarded = ['id'];
+
+    protected $slugs = ['slug' => 'title'];
 
     /**
      * The attributes on which the post list can be ordered

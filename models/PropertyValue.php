@@ -9,7 +9,7 @@ class PropertyValue extends Model
 {
     use \October\Rain\Database\Traits\Validation;
     
-    public $implement = ['RainLab.Translate.Behaviors.TranslatableModel'];
+    public $implement = ['@RainLab.Translate.Behaviors.TranslatableModel'];
 
     public $translatable = [
         'label'
