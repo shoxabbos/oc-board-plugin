@@ -86,7 +86,7 @@ class Categories extends ComponentBase
             });
         }
         else {
-            $categories = Category::getNested();
+            $categories = Category::withCount('posts')->getNested();
         }
 
         /*

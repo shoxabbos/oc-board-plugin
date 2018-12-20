@@ -2,6 +2,7 @@ columns:
     id:
         label: id
         type: number
+        invisible: false
     user_id:
         label: user_id
         type: number
@@ -10,30 +11,39 @@ columns:
     category_id:
         label: 'shohabbos.board::lang.post.category_id'
         type: number
+        relation: category
+        valueFrom: name
     location_id:
         label: location_id
         type: number
+        relation: location
+        valueFrom: name
     title:
         label: 'shohabbos.board::lang.post.title'
         type: text
     slug:
         label: URL
         type: text
+        invisible: true
     content:
         label: 'shohabbos.board::lang.post.content'
         type: text
+        invisible: true
     contact_name:
         label: 'shohabbos.board::lang.post.contact_name'
         type: text
+        invisible: true
     phone:
         label: 'shohabbos.board::lang.post.phone'
         type: text
     email:
         label: 'shohabbos.board::lang.post.email'
         type: text
+        invisible: true
     views:
         label: 'shohabbos.board::lang.post.views'
         type: number
+        invisible: true
     created_at:
         label: created_at
         type: datetime
@@ -41,4 +51,8 @@ columns:
     updated_at:
         label: updated_at
         type: datetime
+        invisible: true
+    amount:
+        label: 'shohabbos.board::lang.post.amount'
+        type: number
         invisible: true

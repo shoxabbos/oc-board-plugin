@@ -16,7 +16,45 @@ class Plugin extends PluginBase
 
         // Local event hook that affects all users
         User::extend(function($model) {
-            $model->hasOne['location'] = 'Shohabbos\Board\Models\Location';
+            $model->addFillable([
+                'location_id',
+                'phone'
+            ]);
+
+            $model->belongsTo['location'] = 'Shohabbos\Board\Models\Location';
+            $model->hasMany['posts'] = 'Shohabbos\Board\Models\Post';
+        });
+
+
+        // now your actual code for extending fields
+        \RainLab\User\Controllers\Users::extendFormFields(function($form, $model, $context){
+            
+            if (!$model instanceof \RainLab\User\Models\User)
+                return;
+
+            if (!$model->exists)
+                return;
+
+            $form->addTabFields([
+                'phone' => [
+                    'tab' => 'Board fields',
+                    'type'  => 'text',
+                    'label' => 'Phone',
+                    'comment' => 'Add user phone'
+                ],
+                'balance' => [
+                    'tab' => 'Board fields',
+                    'type'  => 'text',
+                    'label' => 'Balance',
+                    'comment' => 'Add user phone'
+                ],
+                'location' => [
+                    'tab' => 'Board fields',
+                    'type'  => 'relation',
+                    'label' => 'Location',
+                    'comment' => 'Add user phone'
+                ]
+            ]);
         });
 
 
@@ -34,6 +72,9 @@ class Plugin extends PluginBase
             }
 
             $widget->addColumns([
+                'phone' => [
+                    'label' => 'Phone'
+                ],
                 'balance' => [
                     'label' => 'Balance'
                 ],
@@ -55,6 +96,7 @@ class Plugin extends PluginBase
         return [
             'Shohabbos\Board\Components\Post' => 'boardPost',
             'Shohabbos\Board\Components\Posts' => 'boardPosts',
+            'Shohabbos\Board\Components\FavList' => 'boardFavList',
             'Shohabbos\Board\Components\PostForm' => 'boardPostForm',
             'Shohabbos\Board\Components\Categories' => 'boardCategories',
         ];

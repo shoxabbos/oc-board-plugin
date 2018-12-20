@@ -3,17 +3,17 @@
 use BackendAuth;
 use Cms\Classes\Page;
 use Cms\Classes\ComponentBase;
-use Shohabos\Board\Models\Post as BoardPost;
+use Shohabbos\Board\Models\Post as BoardPost;
 
 class Post extends ComponentBase
 {
     /**
-     * @var Shohabos\Board\Models\Post The post model used for display.
+     * @var Shohabbos\Board\Models\Post The post model used for display.
      */
     public $post;
 
     /**
-     * @var string Reference to the page name for linking to categories.
+     * @var string Reference to the page name for linking to category.
      */
     public $categoryPage;
 
@@ -80,11 +80,11 @@ class Post extends ComponentBase
         /*
          * Add a "url" helper attribute for linking to each category
          */
-        if ($post && $post->categories->count()) {
-            $post->categories->each(function($category) {
-                $category->setUrl($this->categoryPage, $this->controller);
-            });
+        if ($post && $post->category) {
+            $post->category->setUrl($this->categoryPage, $this->controller);
         }
+
+        $post->increment('views');
 
         return $post;
     }
@@ -115,9 +115,7 @@ class Post extends ComponentBase
 
         $post->setUrl($postPage, $this->controller);
 
-        $post->categories->each(function($category) {
-            $category->setUrl($this->categoryPage, $this->controller);
-        });
+        $post->category->setUrl($this->categoryPage, $this->controller);
 
         return $post;
     }

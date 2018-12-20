@@ -40,7 +40,7 @@ class Location extends Model
 
     public $hasMany = [
         'children'    => [self::class, 'key' => 'parent_id'],
-        'posts' => Post::class
+        'posts' => Post::class,
     ];
 
     public $belongsTo = [

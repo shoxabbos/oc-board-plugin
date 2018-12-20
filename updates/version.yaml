@@ -102,3 +102,24 @@
 1.0.35:
     - 'Add location_id to users'
     - migration1035.php
+1.0.36:
+    - 'Add the users phone fields'
+    - migration1036.php
+1.0.37:
+    - 'Updated table shohabbos_board_posts'
+    - builder_table_update_shohabbos_board_posts_7.php
+1.0.38:
+    - 'Updated table shohabbos_board_posts'
+    - builder_table_update_shohabbos_board_posts_8.php
+1.0.39:
+    - 'Updated table shohabbos_board_posts'
+    - builder_table_update_shohabbos_board_posts_9.php
+1.0.40:
+    - 'Updated table shohabbos_board_posts'
+    - builder_table_update_shohabbos_board_posts_10.php
+1.0.41:
+    - 'Updated table shohabbos_board_posts'
+    - builder_table_update_shohabbos_board_posts_11.php
+1.0.42:
+    - 'Updated table shohabbos_board_post_properties'
+    - builder_table_update_shohabbos_board_post_properties_5.php

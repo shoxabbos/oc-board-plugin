@@ -38,6 +38,8 @@
         'posts_except_post_description' => 'Enter ID/URL or variable with post ID/URL you want to except',
         'postform_title' => 'Форма добавления записи',
         'postform_description' => 'Добавляет форму на страницу для создание новых записей',
+        'favlist_title' => 'Избранные объявления',
+        'favlist_description' => 'Выводит список избранных постов',
     ],
     'category' => [
         'name' => 'Название',
@@ -102,6 +104,8 @@
         'status' => 'Статус',
         'tab_main' => 'Основные',
         'tab_plans' => 'Услуги',
+        'amount' => 'Цена',
+        'is_contract' => 'Договорная',
     ],
     'location' => [
         'name' => 'Имя',

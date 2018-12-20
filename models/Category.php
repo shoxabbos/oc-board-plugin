@@ -8,8 +8,9 @@ use Model;
 class Category extends Model
 {
     use \October\Rain\Database\Traits\Validation;
-    use \October\Rain\Database\Traits\Sortable;
     use \October\Rain\Database\Traits\SimpleTree;
+    use \October\Rain\Database\Traits\Sortable;
+    use \October\Rain\Database\Traits\Nullable;
     
     const SORT_ORDER = 'sort';
     const PARENT_ID = 'parent_id';
@@ -21,6 +22,8 @@ class Category extends Model
         'seo_desc', 'seo_keys',
         'slug'
     ];
+
+    public $nullable = ['parent_id'];
 
     /*
      * Disable timestamps by default.
@@ -72,9 +75,9 @@ class Category extends Model
     public function setUrl($pageName, $controller)
     {
         $params = [
-            'id'   => $this->id,
-            'slug' => $this->slug,
+            'category' => $this->slug,
         ];
+        
         return $this->url = $controller->pageUrl($pageName, $params, false);
     }
 }

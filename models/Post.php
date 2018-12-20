@@ -9,6 +9,7 @@ class Post extends Model
 {
     use \October\Rain\Database\Traits\Validation;
     use \October\Rain\Database\Traits\Sluggable;
+    use \October\Rain\Database\Traits\Nullable;
     
     public $table = 'shohabbos_board_posts';
 
@@ -16,7 +17,9 @@ class Post extends Model
 
     public $guarded = ['id'];
 
-    protected $slugs = ['slug' => 'title'];
+    public $slugs = ['slug' => 'title'];
+
+    public $nullable = ['amount'];
 
     /**
      * The attributes on which the post list can be ordered
@@ -44,7 +47,8 @@ class Post extends Model
 
     public $belongsTo = [
         'user' => 'RainLab\User\Models\User',
-        'category' => Category::class
+        'category' => Category::class,
+        'location' => Location::class,
     ];
     
     public $belongsToMany = [
@@ -65,9 +69,18 @@ class Post extends Model
 
 
 
+    //
+    // Mutators
+    //
 
+    public function getAmountAttribute($value) {
+        return number_format($value);
+    }
 
-
+    public function isFav() {
+        $posts = \Cookie::get('featured', []);
+        return isset($posts[$this->id]) ? 'active' : '';
+    }
 
 
     //

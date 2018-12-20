@@ -63,6 +63,17 @@ tabs:
             required: 1
             type: dropdown
             tab: 'shohabbos.board::lang.post.tab_main'
+        amount:
+            label: 'shohabbos.board::lang.post.amount'
+            span: auto
+            type: number
+            tab: 'shohabbos.board::lang.post.tab_main'
+        is_contract:
+            label: 'shohabbos.board::lang.post.is_contract'
+            span: auto
+            default: 0
+            type: checkbox
+            tab: 'shohabbos.board::lang.post.tab_main'
         plans:
             span: full
             path: field_plans

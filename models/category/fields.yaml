@@ -16,6 +16,7 @@ tabs:
     fields:
         parent_id:
             label: 'shohabbos.board::lang.category.parent_id'
+            emptyOption: -- no parent --
             span: auto
             type: dropdown
             tab: 'shohabbos.board::lang.tabs.main'
