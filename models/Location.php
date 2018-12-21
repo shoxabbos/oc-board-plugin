@@ -17,7 +17,7 @@ class Location extends Model
     public $implement = ['@RainLab.Translate.Behaviors.TranslatableModel'];
     
     public $translatable = [
-        'name'
+        'name', 'slug'
     ];
 
     /*

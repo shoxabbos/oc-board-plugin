@@ -3,6 +3,14 @@ fields:
         label: 'shohabbos.board::lang.location.name'
         span: auto
         type: text
+    slug:
+        label: 'shohabbos.board::lang.location.slug'
+        span: auto
+        required: 1
+        preset:
+            field: name
+            type: slug
+        type: text
     parent:
         label: 'shohabbos.board::lang.location.parent_id'
         nameFrom: name

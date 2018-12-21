@@ -123,3 +123,15 @@
 1.0.42:
     - 'Updated table shohabbos_board_post_properties'
     - builder_table_update_shohabbos_board_post_properties_5.php
+1.0.43:
+    - 'Updated table shohabbos_board_locations'
+    - builder_table_update_shohabbos_board_locations_3.php
+1.0.44:
+    - 'Updated table shohabbos_board_categories'
+    - builder_table_update_shohabbos_board_categories_4.php
+1.0.45:
+    - 'Updated table shohabbos_board_categories'
+    - builder_table_update_shohabbos_board_categories_5.php
+1.0.46:
+    - 'Updated table shohabbos_board_categories'
+    - builder_table_update_shohabbos_board_categories_6.php

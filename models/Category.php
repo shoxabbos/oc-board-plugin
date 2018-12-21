@@ -8,12 +8,7 @@ use Model;
 class Category extends Model
 {
     use \October\Rain\Database\Traits\Validation;
-    use \October\Rain\Database\Traits\SimpleTree;
-    use \October\Rain\Database\Traits\Sortable;
-    use \October\Rain\Database\Traits\Nullable;
-    
-    const SORT_ORDER = 'sort';
-    const PARENT_ID = 'parent_id';
+    use \October\Rain\Database\Traits\NestedTree;
     
     public $implement = ['@RainLab.Translate.Behaviors.TranslatableModel'];
 
@@ -22,8 +17,6 @@ class Category extends Model
         'seo_desc', 'seo_keys',
         'slug'
     ];
-
-    public $nullable = ['parent_id'];
 
     /*
      * Disable timestamps by default.
@@ -48,24 +41,15 @@ class Category extends Model
     ];
 
     public $hasMany = [
-        'children'    => [self::class, 'key' => 'parent_id'],
         'posts' => Post::class
     ];
 
-    public $belongsTo = [
-        'parent'    => [self::class, 'key' => 'parent_id'],
-    ];
 
     public $belongsToMany = [
         'properties' => [Property::class, 'table' => 'shohabbos_board_category_property']
     ];
     
 
-    public function getParentIdOptions() {
-        return self::where('parent_id', null)
-            ->where('id', '!=', $this->id)
-            ->lists('name', 'id');
-    }
 
     /**
      * Sets the "url" attribute with a URL to this object
@@ -74,8 +58,12 @@ class Category extends Model
      */
     public function setUrl($pageName, $controller)
     {
+        dump($this->getParentsAndSelf());
+        exit;
+
         $params = [
-            'category' => $this->slug,
+            'slug' => $this->slug,
+            'categories' => $this->slug,
         ];
         
         return $this->url = $controller->pageUrl($pageName, $params, false);

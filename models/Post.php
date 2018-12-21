@@ -105,26 +105,21 @@ class Post extends Model
             'perPage'          => 30,
             'sort'             => 'created_at',
             'categories'       => null,
-            'exceptCategories' => null,
             'category'         => null,
             'search'           => '',
             'published'        => true,
-            'exceptPost'       => null,
+            'location'       => null,
         ], $options));
 
-        $searchableFields = ['title', 'content'];
+        $searchableFields = ['title', 'content', 'slug'];
         
         /*
-         * Ignore a post
+         * Location filter
          */
-        if ($exceptPost) {
-            if (is_numeric($exceptPost)) {
-                $query->where('id', '<>', $exceptPost);
-            }
-            else {
-                $query->where('slug', '<>', $exceptPost);
-            }
+        if ($location) {
+            $query->where('location_id', $location);
         }
+
         /*
          * Sorting
          */
@@ -147,20 +142,13 @@ class Post extends Model
         if (strlen($search)) {
             $query->searchWhere($search, $searchableFields);
         }
+        
         /*
          * Categories
          */
         if ($categories !== null) {
             $categories = is_array($categories) ? $categories : [$categories];
             $query->whereIn('category_id', $categories);
-        }
-
-        /*
-         * Except Categories
-         */
-        if ($exceptCategories !== null) {
-            $exceptCategories = is_array($exceptCategories) ? $exceptCategories : [$exceptCategories];
-            $query->whereNotIn('category_id', $exceptCategories);
         }
 
         /*

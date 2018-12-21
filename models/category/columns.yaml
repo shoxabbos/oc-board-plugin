@@ -11,9 +11,6 @@ columns:
     sort:
         label: sort
         type: number
-    parent_id:
-        label: 'shohabbos.board::lang.category.parent_id'
-        type: number
     seo_desc:
         label: 'shohabbos.board::lang.category.seo_desc'
         type: text

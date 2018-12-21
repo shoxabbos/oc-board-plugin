@@ -42,20 +42,27 @@ tabs:
             span: left
             type: text
             tab: 'shohabbos.board::lang.post.tab_main'
+        location:
+            label: 'shohabbos.board::lang.post.location'
+            nameFrom: name
+            descriptionFrom: description
+            span: auto
+            type: relation
+            tab: 'shohabbos.board::lang.post.tab_main'
         email:
             label: 'shohabbos.board::lang.post.email'
             span: left
             type: text
             tab: 'shohabbos.board::lang.post.tab_main'
+        amount:
+            label: 'shohabbos.board::lang.post.amount'
+            span: auto
+            type: number
+            tab: 'shohabbos.board::lang.post.tab_main'
         contact_name:
             label: 'shohabbos.board::lang.post.contact_name'
             span: left
             type: text
-            tab: 'shohabbos.board::lang.post.tab_main'
-        views:
-            label: 'shohabbos.board::lang.post.views'
-            span: left
-            type: number
             tab: 'shohabbos.board::lang.post.tab_main'
         status:
             label: 'shohabbos.board::lang.post.status'
@@ -63,9 +70,9 @@ tabs:
             required: 1
             type: dropdown
             tab: 'shohabbos.board::lang.post.tab_main'
-        amount:
-            label: 'shohabbos.board::lang.post.amount'
-            span: auto
+        views:
+            label: 'shohabbos.board::lang.post.views'
+            span: left
             type: number
             tab: 'shohabbos.board::lang.post.tab_main'
         is_contract:

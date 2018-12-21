@@ -22,6 +22,18 @@ class Posts extends ComponentBase
     public $pageParam;
 
     /**
+     * Parameter to use for the search query
+     * @var string
+     */
+    public $searchParam;
+
+    /**
+     * Parameter to use for the search query
+     * @var string
+     */
+    public $locationParam;
+
+    /**
      * If the post list should be filtered by a category, the model to use.
      * @var Model
      */
@@ -73,6 +85,18 @@ class Posts extends ComponentBase
                 'description' => 'shohabbos.board::lang.settings.posts_filter_description',
                 'type'        => 'string',
                 'default'     => ''
+            ],
+            'searchParam' => [
+                'title'       => 'shohabbos.board::lang.settings.search_param_title',
+                'description' => 'shohabbos.board::lang.settings.search_param_description',
+                'type'        => 'string',
+                'default'     => '{{ :query }}'
+            ],
+            'locationParam' => [
+                'title'       => 'shohabbos.board::lang.settings.location_param_title',
+                'description' => 'shohabbos.board::lang.settings.location_param_description',
+                'type'        => 'string',
+                'default'     => '{{ :location }}'
             ],
             'postsPerPage' => [
                 'title'             => 'shohabbos.board::lang.settings.posts_per_page',
@@ -163,6 +187,9 @@ class Posts extends ComponentBase
     protected function prepareVars()
     {
         $this->pageParam = $this->page['pageParam'] = $this->paramName('pageNumber');
+        $this->searchParam = $this->page['searchParam'] = $this->paramName('searchParam');
+        $this->locationParam = $this->page['locationParam'] = $this->paramName('locationParam');
+
         $this->noPostsMessage = $this->page['noPostsMessage'] = $this->property('noPostsMessage');
 
         /*
@@ -185,13 +212,10 @@ class Posts extends ComponentBase
             'page'             => $this->property('pageNumber'),
             'sort'             => $this->property('sortOrder'),
             'perPage'          => $this->property('postsPerPage'),
-            'search'           => trim(input('search')),
+            'search'           => trim(input($this->searchParam)),
+            'location'         => trim(input($this->locationParam)),
             'category'         => $category,
-            'published'        => $isPublished,
-            'exceptPost'       => $this->property('exceptPost'),
-            'exceptCategories' => is_array($this->property('exceptCategories'))
-                ? $this->property('exceptCategories')
-                : explode(',', $this->property('exceptCategories')),
+            'published'        => $isPublished
         ]);
 
         /*

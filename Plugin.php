@@ -98,6 +98,8 @@ class Plugin extends PluginBase
             'Shohabbos\Board\Components\Posts' => 'boardPosts',
             'Shohabbos\Board\Components\FavList' => 'boardFavList',
             'Shohabbos\Board\Components\PostForm' => 'boardPostForm',
+            'Shohabbos\Board\Components\Breadcrumb' => 'boardBreadcrumb',
+            'Shohabbos\Board\Components\SearchForm' => 'boardSearchForm',
             'Shohabbos\Board\Components\Categories' => 'boardCategories',
         ];
     }

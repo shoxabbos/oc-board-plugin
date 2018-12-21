@@ -1,0 +1,28 @@
+<div class="category-header">
+    <div class="phs pts clearfix">
+        <div class="pull-left-sm">
+            <ul class="breadcrumbs">
+                <li class="mbs"><a href="/"> Все объявления </a></li>
+                
+                {% if category.parent %}
+                    <li class="mbs"> <a href="{{category.parent.url}}">{{category.parent.name}}</a> </li>
+                {% endif %}
+
+                {% if category %}
+                    <li class="mbs"> {{category.name}} </li>
+                {% endif %}
+            </ul>
+        </div>
+        <div class="pull-right-sm mbs buttons-view hidden-xs hidden-sm">
+            Вид:
+            <span>Список</span> 
+            <span class="active">Галерея</span>
+        </div>
+    </div>
+    <hr class="no-margin">
+    <div class="phs pts pbm category-childs word-spacing">
+        {% for cat in categories %}
+            <a href="{{cat.url}}"> {{cat.name}} <b>{{cat.posts_count}}</b></a>
+        {% endfor %}
+    </div>
+</div>

@@ -14,12 +14,6 @@ fields:
         type: text
 tabs:
     fields:
-        parent_id:
-            label: 'shohabbos.board::lang.category.parent_id'
-            emptyOption: -- no parent --
-            span: auto
-            type: dropdown
-            tab: 'shohabbos.board::lang.tabs.main'
         seo_title:
             label: 'shohabbos.board::lang.category.seo_title'
             size: ''
