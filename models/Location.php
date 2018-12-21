@@ -7,12 +7,8 @@ use Model;
  */
 class Location extends Model
 {
-    use \October\Rain\Database\Traits\Sortable;
     use \October\Rain\Database\Traits\Validation;
-    use \October\Rain\Database\Traits\SimpleTree;
-
-    const SORT_ORDER = 'sort';
-    const PARENT_ID = 'parent_id';
+    use \October\Rain\Database\Traits\NestedTree;
 
     public $implement = ['@RainLab.Translate.Behaviors.TranslatableModel'];
     
@@ -39,18 +35,7 @@ class Location extends Model
     ];
 
     public $hasMany = [
-        'children'    => [self::class, 'key' => 'parent_id'],
         'posts' => Post::class,
     ];
-
-    public $belongsTo = [
-        'parent'    => [self::class, 'key' => 'parent_id'],
-    ];
-
-    public function getParentIdOptions() {
-        return self::where('parent_id', null)
-            ->where('id', '!=', $this->id)
-            ->lists('name', 'id');
-    }
     
 }

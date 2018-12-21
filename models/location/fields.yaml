@@ -11,9 +11,3 @@ fields:
             field: name
             type: slug
         type: text
-    parent:
-        label: 'shohabbos.board::lang.location.parent_id'
-        nameFrom: name
-        descriptionFrom: description
-        span: auto
-        type: relation

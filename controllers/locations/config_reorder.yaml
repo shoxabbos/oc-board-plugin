@@ -1,4 +1,5 @@
 title: Locations
 modelClass: Shohabbos\Board\Models\Location
+nameFrom: name
 toolbar:
     buttons: reorder_toolbar

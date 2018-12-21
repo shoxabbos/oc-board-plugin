@@ -135,3 +135,12 @@
 1.0.46:
     - 'Updated table shohabbos_board_categories'
     - builder_table_update_shohabbos_board_categories_6.php
+1.0.47:
+    - 'Updated table shohabbos_board_categories'
+    - builder_table_update_shohabbos_board_categories_7.php
+1.0.48:
+    - 'Updated table shohabbos_board_categories'
+    - builder_table_update_shohabbos_board_categories_8.php
+1.0.49:
+    - 'Updated table shohabbos_board_locations'
+    - builder_table_update_shohabbos_board_locations_4.php

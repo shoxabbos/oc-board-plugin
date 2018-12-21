@@ -50,7 +50,6 @@ class Category extends Model
     ];
     
 
-
     /**
      * Sets the "url" attribute with a URL to this object
      * @param string $pageName
@@ -58,12 +57,11 @@ class Category extends Model
      */
     public function setUrl($pageName, $controller)
     {
-        dump($this->getParentsAndSelf());
-        exit;
-
         $params = [
+            'id' => $this->id,
             'slug' => $this->slug,
-            'categories' => $this->slug,
+            'category' => $this->slug,
+            'categories' => implode("/", $this->getParentsAndSelf()->lists('slug')),
         ];
         
         return $this->url = $controller->pageUrl($pageName, $params, false);

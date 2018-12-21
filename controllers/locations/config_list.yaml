@@ -11,4 +11,3 @@ toolbar:
     search:
         prompt: 'backend::lang.list.search_prompt'
 showTree: 1
-treeExpanded: 1

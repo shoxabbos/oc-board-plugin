@@ -8,9 +8,6 @@ columns:
     slug:
         label: URL
         type: text
-    sort:
-        label: sort
-        type: number
     seo_desc:
         label: 'shohabbos.board::lang.category.seo_desc'
         type: text

@@ -5,7 +5,6 @@ columns:
     name:
         label: name
         type: text
-    parent_id:
-        label: parent_id
-        type: number
-        invisible: true
+    slug:
+        label: 'shohabbos.board::lang.location.slug'
+        type: text

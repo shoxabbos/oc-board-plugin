@@ -82,7 +82,6 @@ class Post extends Model
         return isset($posts[$this->id]) ? 'active' : '';
     }
 
-
     //
     // Scopes
     //
