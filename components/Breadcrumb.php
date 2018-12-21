@@ -71,17 +71,24 @@ class Breadcrumb extends ComponentBase
         return Category::withCount('posts')->getNested();
     }
 
+
+
     protected function loadCategory()
     {
         if (!$slug = $this->property('activeCategory')) {
             return null;
         }
 
+        $slugs = explode("/", $slug);
+        $slug = end($slugs);
+
         $category = new Category;
 
-        $category = $category->isClassExtendedWith('RainLab.Translate.Behaviors.TranslatableModel')
-            ? $category->transWhere('slug', $slug)
-            : $category->where('slug', $slug);
+        if ($category->isClassExtendedWith('RainLab.Translate.Behaviors.TranslatableModel')) {
+            $category = $category->transWhere('slug', $slug);
+        } else {
+            $category = $category->where('slug', $slug);
+        }
 
         $category = $category->first();
 
@@ -92,8 +99,6 @@ class Breadcrumb extends ComponentBase
                 $category->parent->setUrl($this->categoryPage, $this->controller);
             }
         }
-
-
 
         return $category ?: null;
     }

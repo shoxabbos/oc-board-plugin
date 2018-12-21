@@ -9,12 +9,15 @@ class Location extends Model
 {
     use \October\Rain\Database\Traits\Validation;
     use \October\Rain\Database\Traits\NestedTree;
+    use \October\Rain\Database\Traits\Sluggable;
 
     public $implement = ['@RainLab.Translate.Behaviors.TranslatableModel'];
     
     public $translatable = [
         'name', 'slug'
     ];
+
+    protected $slugs = ['slug' => 'name'];
 
     /*
      * Disable timestamps by default.

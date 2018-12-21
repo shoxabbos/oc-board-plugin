@@ -51,7 +51,7 @@ class PostForm extends ComponentBase
 
     public function onRun() {
         $this->page['categories'] = BoardCategory::getNested();
-        $this->page['locations'] = BoardLocation::with('children')->where('parent_id', null)->get();
+        $this->page['locations'] = BoardLocation::getNested();
     }
 
     public function onCreatePost() {

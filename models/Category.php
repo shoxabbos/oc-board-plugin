@@ -9,6 +9,7 @@ class Category extends Model
 {
     use \October\Rain\Database\Traits\Validation;
     use \October\Rain\Database\Traits\NestedTree;
+    use \October\Rain\Database\Traits\Sluggable;
     
     public $implement = ['@RainLab.Translate.Behaviors.TranslatableModel'];
 
@@ -17,6 +18,8 @@ class Category extends Model
         'seo_desc', 'seo_keys',
         'slug'
     ];
+
+    protected $slugs = ['slug' => 'name'];
 
     /*
      * Disable timestamps by default.
