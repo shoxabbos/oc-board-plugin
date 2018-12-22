@@ -1,7 +1,7 @@
 <?php return [
     'plugin' => [
         'name' => 'Board',
-        'description' => '',
+        'description' => 'Фронтенд управления данными плагина',
     ],
     'settings' => [
         'category_title' => 'Список категорий',
@@ -38,12 +38,10 @@
         'posts_except_post_description' => 'Enter ID/URL or variable with post ID/URL you want to except',
         'postform_title' => 'Форма добавления записи',
         'postform_description' => 'Добавляет форму на страницу для создание новых записей',
-        'favlist_title' => 'Избранные объявления',
-        'favlist_description' => 'Выводит список избранных постов',
+        'helper_title' => 'Helper component',
+        'helper_description' => 'Этот компонент включает в себе: Избранные посты,',
         'search_title' => 'Форма поиска',
         'search_description' => 'Создает форму для поиска постов',
-        'breadcrumb_title' => 'Хлебные крошки',
-        'breadcrumb_description' => 'Вывод хлебные крошки и категории',
         'search_param_title' => 'Параметр поиска',
         'search_param_description' => 'Параметр с помощью которого можно получить поисковый запрос',
         'location_param_title' => 'Параметр локации',
@@ -58,6 +56,7 @@
         'seo_desc' => 'SEO Описание',
         'seo_keys' => 'SEO Ключевые слова',
         'sort' => 'Сортировать',
+        'photo' => 'Постер',
     ],
     'tabs' => [
         'main' => 'Основные',

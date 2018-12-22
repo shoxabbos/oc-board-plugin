@@ -40,7 +40,8 @@ class Category extends Model
     ];
 
     public $attachOne = [
-        'thumb' => 'System\Models\File'
+        'thumb' => 'System\Models\File',
+        'photo' => 'System\Models\File'
     ];
 
     public $hasMany = [

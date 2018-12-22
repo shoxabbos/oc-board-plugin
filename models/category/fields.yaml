@@ -44,6 +44,18 @@ tabs:
             span: right
             type: textarea
             tab: 'shohabbos.board::lang.tabs.main'
+        photo:
+            label: 'shohabbos.board::lang.category.photo'
+            mode: image
+            imageWidth: '400'
+            imageHeight: '400'
+            useCaption: true
+            thumbOptions:
+                mode: crop
+                extension: auto
+            span: auto
+            type: fileupload
+            tab: 'shohabbos.board::lang.tabs.main'
         properties:
             span: full
             path: $/shohabbos/board/controllers/categories/_field_properties.htm

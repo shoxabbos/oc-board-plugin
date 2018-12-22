@@ -11,8 +11,8 @@ class Helper extends ComponentBase
     public function componentDetails()
     {
         return [
-            'name'        => 'shohabbos.board::lang.settings.favlist_title',
-            'description' => 'shohabbos.board::lang.settings.favlist_description'
+            'name'        => 'shohabbos.board::lang.settings.helper_title',
+            'description' => 'shohabbos.board::lang.settings.helper_description'
         ];
     }
 
