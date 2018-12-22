@@ -1,8 +1,10 @@
-<form data-request="onSearch" data-request-flash>
-            
+{% set locations = __SELF__.locations %}
+
+<form class="header-search-form mbb" action="{{'list'|page}}">
+    
     <div class="row">
         <div class="col-md-3 mbs">
-            <select name="location" class="form-control">
+            <select name="location" class="form-control header-search-element">
                 <option value=""> {{'Весь Узбекистан'|_}} </option>
                 {% for location in locations %}
                 <optgroup label="{{location.name}}">
@@ -14,10 +16,11 @@
             </select>
         </div>
         <div class="col-md-7 mbs">
-            <input type="text" name="query" class="form-control" placeholder="{{'Что ищем?'|_}}">
+            <input type="text" name="query" class="form-control header-search-element" placeholder="{{'Что ищем?'|_}}">
         </div>
         <div class="col-md-2 mbs">
-            <button type="submit" class="btn btn-default btn-block">
+            <button type="submit" class="btn btn-default btn-block header-search-element">
+                <i class="material-icons valign-middle">search</i>
                 <b> {{'Искать'|_}} </b>
             </button>
         </div>

@@ -3,7 +3,7 @@
 use Cms\Classes\ComponentBase;
 use Shohabbos\Board\Models\Post;
 
-class FavList extends ComponentBase
+class Helper extends ComponentBase
 {
     
     public $posts;

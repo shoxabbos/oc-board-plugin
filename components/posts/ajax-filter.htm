@@ -1,0 +1,60 @@
+{% set locations = __SELF__.locations %}
+
+<form action="" class="header-search-form mbb">
+            
+    <div class="row">
+        <div class="col-md-3 mbs">
+            <select name="location" class="form-control header-search-element">
+                <option value=""> {{'Весь Узбекистан'|_}} </option>
+                {% for location in locations %}
+                <optgroup label="{{location.name}}">
+                    {% for locationChil in location.children %}
+                        <option value="{{locationChil.id}}"> {{locationChil.name}} </option>
+                    {% endfor %}
+                </optgroup>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-md-7 mbs">
+            <input type="text" name="query" class="form-control header-search-element" placeholder="{{'Что ищем?'|_}}">
+        </div>
+        <div class="col-md-2 mbs">
+            <button class="btn btn-default btn-block header-search-element">
+                <i class="fa fa-search fa-icon valign-middle"></i>
+                <b class="valign-middle"> {{'Искать'|_}} </b>
+            </button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="container-fluid">
+            <div class="mbs">
+                <div class="word-spacing">
+                    <label>
+                        <input type="checkbox" class="valign-middle"> 
+                        <span class="valign-middle">Искать в тексте объявлений</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" class="valign-middle"> 
+                        <span class="valign-middle">Только с фото</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="container-fluid mbs">
+            <div class="form-inline">
+                <div class="form-group">
+                    <input type="text" placeholder="Цена от (сум)" class="form-control form-inline">
+                </div>
+                <span class="hidden-xs">-</span>
+                <div class="form-group">
+                    <input type="text" placeholder="Цена до (сум)" class="form-control form-inline">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>

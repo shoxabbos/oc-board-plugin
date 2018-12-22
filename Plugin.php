@@ -96,10 +96,8 @@ class Plugin extends PluginBase
         return [
             'Shohabbos\Board\Components\Post' => 'boardPost',
             'Shohabbos\Board\Components\Posts' => 'boardPosts',
-            'Shohabbos\Board\Components\FavList' => 'boardFavList',
+            'Shohabbos\Board\Components\Helper' => 'boardHelper',
             'Shohabbos\Board\Components\PostForm' => 'boardPostForm',
-            'Shohabbos\Board\Components\Breadcrumb' => 'boardBreadcrumb',
-            'Shohabbos\Board\Components\SearchForm' => 'boardSearchForm',
             'Shohabbos\Board\Components\Categories' => 'boardCategories',
         ];
     }

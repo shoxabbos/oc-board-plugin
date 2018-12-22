@@ -6,6 +6,7 @@ use Cms\Classes\Page;
 use Cms\Classes\ComponentBase;
 use Shohabbos\Board\Models\Post;
 use Shohabbos\Board\Models\Category;
+use Shohabbos\Board\Models\Location;
 
 class Posts extends ComponentBase
 {
@@ -236,6 +237,9 @@ class Posts extends ComponentBase
             return null;
         }
 
+        $slugs = explode("/", $slug);
+        $slug = end($slugs);
+
         $category = new Category;
 
         $category = $category->isClassExtendedWith('RainLab.Translate.Behaviors.TranslatableModel')
@@ -252,4 +256,20 @@ class Posts extends ComponentBase
         $backendUser = BackendAuth::getUser();
         return $backendUser && $backendUser->hasAccess('shohabbos.board.access_posts');
     }
+
+
+
+
+
+
+    // variables for frontend
+
+    public function locations() {
+        return Location::getNested();
+    }
+
+    public function categories() {
+        return Category::getNested();
+    }
+
 }

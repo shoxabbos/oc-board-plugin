@@ -48,6 +48,8 @@
         'search_param_description' => 'Параметр с помощью которого можно получить поисковый запрос',
         'location_param_title' => 'Параметр локации',
         'location_param_description' => 'Параметр с помощью которого можно получить регион',
+        'ajax_filter_title' => 'Ajax filter',
+        'ajax_filter_description' => 'Создает форму с дополнительными фильтрами',
     ],
     'category' => [
         'name' => 'Название',

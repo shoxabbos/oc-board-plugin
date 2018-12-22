@@ -105,4 +105,66 @@ class Categories extends ComponentBase
             }
         });
     }
+
+
+
+    // breadcrumb
+    public function breadcrumb() {
+        $this->page['category'] = $category = $this->loadCategory();
+        
+        if ($category) {
+            $categories = $this->loadCategories($category);
+            $categories->each(function($category) {
+                $category->setUrl($this->categoryPage, $this->controller);
+            });
+
+            $this->page['categories'] = $categories;    
+        }
+    }
+
+    protected function loadCategories1(Category $category = null) {
+        if ($category->children->count()) {
+            return $category->children()->withCount('posts')->get();
+        }
+
+        if ($category->parent->children->count()) {
+            return $category->parent->children()->withCount('posts')->get();
+        }
+
+        return Category::withCount('posts')->getNested();
+    }
+
+
+
+    protected function loadCategory()
+    {
+        if (!$slug = $this->property('slug')) {
+            return null;
+        }
+
+        $slugs = explode("/", $slug);
+        $slug = end($slugs);
+
+        $category = new Category;
+
+        if ($category->isClassExtendedWith('RainLab.Translate.Behaviors.TranslatableModel')) {
+            $category = $category->transWhere('slug', $slug);
+        } else {
+            $category = $category->where('slug', $slug);
+        }
+
+        $category = $category->first();
+
+        if ($category) {
+            $category->setUrl($this->categoryPage, $this->controller);
+
+            if ($category->parent) {
+                $category->parent->setUrl($this->categoryPage, $this->controller);
+            }
+        }
+
+        return $category ?: null;
+    }
+
+
 }
