@@ -1,7 +1,10 @@
 {% set locations = __SELF__.locations %}
 
-<form action="" class="header-search-form mbb">
-            
+<form id="mainSeachForm" class="header-search-form mbb" 
+    data-request="onFilter" 
+    data-request-update="'{{__SELF__}}/default': '#listPosts'"
+    data-request-success="history.pushState(null, null, location.origin+location.pathname+'?'+$(this).serialize());">
+    
     <div class="row">
         <div class="col-md-3 mbs">
             <select name="location" class="form-control header-search-element">
@@ -9,14 +12,16 @@
                 {% for location in locations %}
                 <optgroup label="{{location.name}}">
                     {% for locationChil in location.children %}
-                        <option value="{{locationChil.id}}"> {{locationChil.name}} </option>
+                        <option 
+                            {{urlParams.location == locationChil.id ? 'selected'}} 
+                            value="{{locationChil.id}}"> {{locationChil.name}}  </option>
                     {% endfor %}
                 </optgroup>
                 {% endfor %}
             </select>
         </div>
         <div class="col-md-7 mbs">
-            <input type="text" name="query" class="form-control header-search-element" placeholder="{{'Что ищем?'|_}}">
+            <input type="text" name="query" class="form-control header-search-element" value="{{urlParams.query}}" placeholder="{{'Что ищем?'|_}}">
         </div>
         <div class="col-md-2 mbs">
             <button class="btn btn-default btn-block header-search-element">
@@ -31,11 +36,11 @@
             <div class="mbs">
                 <div class="word-spacing">
                     <label>
-                        <input type="checkbox" class="valign-middle"> 
+                        <input type="checkbox" class="valign-middle" name="search-content" value="1"> 
                         <span class="valign-middle">Искать в тексте объявлений</span>
                     </label>
                     <label>
-                        <input type="checkbox" class="valign-middle"> 
+                        <input type="checkbox" class="valign-middle" name="photo" value="1"> 
                         <span class="valign-middle">Только с фото</span>
                     </label>
                 </div>
@@ -43,18 +48,22 @@
         </div>
     </div>
 
+    {% if category.properties %}
     <div class="row">
-        <div class="container-fluid mbs">
-            <div class="form-inline">
-                <div class="form-group">
-                    <input type="text" placeholder="Цена от (сум)" class="form-control form-inline">
-                </div>
-                <span class="hidden-xs">-</span>
-                <div class="form-group">
-                    <input type="text" placeholder="Цена до (сум)" class="form-control form-inline">
-                </div>
-            </div>
+        <div class="container-fluid mbs dynamic-properties">
+            {% for prop in category.properties %}
+                {% partial __SELF__ ~ "::filter-property" property=prop %}
+            {% endfor %}
         </div>
     </div>
+    {% endif %}
 
 </form>
+
+{% put scripts %}
+<script>
+    $('form .dynamic-properties').change(function() {
+        $('#mainSeachForm').submit();
+    });
+</script>
+{% endput %}

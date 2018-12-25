@@ -107,10 +107,39 @@ class Post extends Model
             'category'         => null,
             'search'           => '',
             'published'        => true,
-            'location'       => null,
+            'location'         => null,
+            'properties'       => null,
         ], $options));
 
         $searchableFields = ['title', 'content', 'slug'];
+
+        if ($properties && is_array($properties)) {
+            $postProperty = PostProperty::where(1);
+
+            if ($category) {
+                $postProperty = PostProperty::where('category_id', $category);
+            }
+
+
+            foreach ($properties as $key => $value) {
+                if (empty($value)) {
+                    continue;
+                }
+
+                if (is_array($value)) {
+                    $postProperty->where('property_id', $key)
+                        ->whereBetween('value', $value);
+                } else {
+                    $postProperty->where('property_id', $key)->where('value', $value);
+                }
+            }
+
+            $ids = $postProperty->lists('post_id');
+
+            if (!empty($ids)) {
+                $query->whereIn('id', $ids);
+            }
+        }
         
         /*
          * Location filter

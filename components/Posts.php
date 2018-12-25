@@ -52,6 +52,8 @@ class Posts extends ComponentBase
      */
     public $sortOrder;
 
+    public $urlParams = [];
+
     public function componentDetails()
     {
         return [
@@ -166,6 +168,10 @@ class Posts extends ComponentBase
         $this->pageParam = $this->page['pageParam'] = $this->paramName('pageNumber');
         $this->noPostsMessage = $this->page['noPostsMessage'] = $this->property('noPostsMessage');
 
+        $this->urlParams['query'] = input('query');
+        $this->urlParams['location'] = input('location');
+        $this->page['urlParams'] = $this->urlParams;
+
         /*
          * Page links
          */
@@ -183,6 +189,7 @@ class Posts extends ComponentBase
             'perPage'          => $this->property('postsPerPage'),
             'search'           => trim(input('query')),
             'location'         => trim(input('location')),
+            'properties'       => input('properties'),
             'category'         => $category,
         ]);
 
@@ -195,6 +202,7 @@ class Posts extends ComponentBase
 
         return $posts;
     }
+
 
     protected function loadCategory()
     {
@@ -213,7 +221,7 @@ class Posts extends ComponentBase
 
         $category = $category->first();
 
-        if ($category->parent) {
+        if ($category && $category->parent) {
             $category->parent->setUrl($this->categoryPage, $this->controller);
         }
 
@@ -222,6 +230,10 @@ class Posts extends ComponentBase
 
     public function loadClosestCategories() 
     {
+        if (!$this->category) {
+            return null;
+        }
+
         if ($this->category->children->count()) {
             $categories = $this->category->children()->withCount('posts')->get();
         }elseif ($this->category->parent->children->count()) {
@@ -238,6 +250,24 @@ class Posts extends ComponentBase
     }
 
 
+    public function onFilter() {
+        $this->prepareVars();
+
+        $this->category = $this->page['category'] = $this->loadCategory();
+        $this->posts = $this->page['posts'] = $this->listPosts();
+
+        /*
+         * If the page number is not valid, redirect
+         */
+        if ($pageNumberParam = $this->paramName('pageNumber')) {
+            $currentPage = $this->property('pageNumber');
+
+            if ($currentPage > ($lastPage = $this->posts->lastPage()) && $currentPage > 1)
+                return Redirect::to($this->currentPageUrl([$pageNumberParam => $lastPage]));
+        }
+
+        //return $this->renderPartial('@default.htm');
+    }
 
 
 
