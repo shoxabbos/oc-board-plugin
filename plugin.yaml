@@ -32,7 +32,7 @@ navigation:
             board-posts:
                 label: 'shohabbos.board::lang.menu.posts'
                 url: shohabbos/board/posts
-                icon: icon-sitemap
+                icon: icon-align-justify
                 permissions:
                     - manage_posts
             board-categories:
@@ -44,18 +44,18 @@ navigation:
             board-properties:
                 label: 'shohabbos.board::lang.menu.properties'
                 url: shohabbos/board/properties
-                icon: icon-sitemap
+                icon: icon-plus
                 permissions:
                     - manage_properties
             board-plans:
                 label: 'shohabbos.board::lang.menu.plans'
                 url: shohabbos/board/plans
-                icon: icon-sitemap
+                icon: icon-ticket
                 permissions:
                     - mana_plans
             side-menu-item:
                 label: 'shohabbos.board::lang.menu.locations'
                 url: shohabbos/board/locations
-                icon: icon-sitemap
+                icon: icon-reorder
                 permissions:
                     - manage_locations

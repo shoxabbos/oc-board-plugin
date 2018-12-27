@@ -40,6 +40,19 @@ class Post extends ComponentBase
                 'type'        => 'dropdown',
                 'default'     => 'blog/category',
             ],
+            'postPage' => [
+                'title'       => 'shohabbos.board::lang.settings.posts_post',
+                'description' => 'shohabbos.board::lang.settings.posts_post_description',
+                'type'        => 'dropdown',
+                'default'     => 'detail',
+            ],
+            'postsPerPage' => [
+                'title'             => 'shohabbos.board::lang.settings.posts_per_page',
+                'type'              => 'string',
+                'validationPattern' => '^[0-9]+$',
+                'validationMessage' => 'shohabbos.board::lang.settings.posts_per_page_validation',
+                'default'           => '4',
+            ],
         ];
     }
 
@@ -48,10 +61,17 @@ class Post extends ComponentBase
         return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
     }
 
+    public function getPostPageOptions()
+    {
+        return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
+    }
+
     public function onRun()
     {
+        $this->postPage = $this->page['postPage'] = $this->property('postPage');
         $this->categoryPage = $this->page['categoryPage'] = $this->property('categoryPage');
         $this->post = $this->page['post'] = $this->loadPost();
+
     }
 
     public function onRender()
@@ -97,6 +117,26 @@ class Post extends ComponentBase
     public function nextPost()
     {
         return $this->getPostSibling(1);
+    }
+
+    public function similarPosts() {
+        if (!$this->post) {
+            return;
+        }
+
+        $posts = $this->post->category->posts()
+            ->inRandomOrder()->where('id', '!=', $this->post->id)
+            ->limit($this->property('postsPerPage'))
+            ->get();
+
+        /*
+         * Add a "url" helper attribute for linking to each post and category
+         */
+        $posts->each(function($post) {
+            $post->setUrl($this->postPage, $this->controller);
+        });
+
+        return $posts;
     }
 
     protected function getPostSibling($direction = 1)

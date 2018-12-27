@@ -9,6 +9,7 @@ class Plugin extends PluginBase
 
     public $require = [
         'Rainlab.User',
+        'Shohabbos.Payme',
     ];
 
     public function boot()
