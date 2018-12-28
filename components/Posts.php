@@ -110,23 +110,7 @@ class Posts extends ComponentBase
                 'type'        => 'dropdown',
                 'default'     => 'blog/post',
                 'group'       => 'Links',
-            ],
-            'exceptPost' => [
-                'title'             => 'shohabbos.board::lang.settings.posts_except_post',
-                'description'       => 'shohabbos.board::lang.settings.posts_except_post_description',
-                'type'              => 'string',
-                'validationPattern' => 'string',
-                'validationMessage' => 'shohabbos.board::lang.settings.posts_except_post_validation',
-                'default'           => '',
-                'group'             => 'Exceptions',
-            ],
-            'exceptCategories' => [
-                'title'             => 'shohabbos.board::lang.settings.posts_except_categories',
-                'description'       => 'shohabbos.board::lang.settings.posts_except_categories_description',
-                'type'              => 'string',
-                'default'           => '',
-                'group'             => 'Exceptions',
-            ],
+            ]
         ];
     }
 

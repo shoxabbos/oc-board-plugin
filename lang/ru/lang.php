@@ -39,7 +39,7 @@
         'postform_title' => 'Форма добавления записи',
         'postform_description' => 'Добавляет форму на страницу для создание новых записей',
         'helper_title' => 'Helper component',
-        'helper_description' => 'Этот компонент включает в себе: Избранные посты,',
+        'helper_description' => 'Этот компонент включает в себе: onPay,....',
         'search_title' => 'Форма поиска',
         'search_description' => 'Создает форму для поиска постов',
         'search_param_title' => 'Параметр поиска',
@@ -48,6 +48,8 @@
         'location_param_description' => 'Параметр с помощью которого можно получить регион',
         'ajax_filter_title' => 'Ajax filter',
         'ajax_filter_description' => 'Создает форму с дополнительными фильтрами',
+        'withlist_title' => 'Избранные',
+        'withlist_description' => 'Отображает избранные объявления',
     ],
     'category' => [
         'name' => 'Название',

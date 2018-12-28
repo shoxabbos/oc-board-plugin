@@ -12,9 +12,9 @@ class Plugin extends PluginBase
         'Shohabbos.Payme',
     ];
 
+
     public function boot()
     {
-
         // Local event hook that affects all users
         User::extend(function($model) {
             $model->addFillable([
@@ -99,6 +99,7 @@ class Plugin extends PluginBase
             'Shohabbos\Board\Components\Posts' => 'boardPosts',
             'Shohabbos\Board\Components\Helper' => 'boardHelper',
             'Shohabbos\Board\Components\PostForm' => 'boardPostForm',
+            'Shohabbos\Board\Components\Wishlist' => 'boardWishlist',
             'Shohabbos\Board\Components\Categories' => 'boardCategories',
         ];
     }

@@ -78,7 +78,7 @@ class Post extends Model
     }
 
     public function isFav() {
-        $posts = \Cookie::get('featured', []);
+        $posts = \Cookie::get('wishlist', []);
         return isset($posts[$this->id]) ? 'active' : '';
     }
 
