@@ -109,10 +109,14 @@ class Post extends Model
             'published'        => true,
             'location'         => null,
             'properties'       => null,
+            'user_id'          => null,
         ], $options));
 
         $searchableFields = ['title', 'content', 'slug'];
 
+        /*
+         * Properties filter
+         */
         if ($properties && is_array($properties)) {
             $postProperty = PostProperty::where(1);
 
@@ -139,6 +143,13 @@ class Post extends Model
             if (!empty($ids)) {
                 $query->whereIn('id', $ids);
             }
+        }
+
+        /*
+         * Properties filter
+         */
+        if ($user_id) {
+            $query->where('user_id', $user_id);
         }
         
         /*

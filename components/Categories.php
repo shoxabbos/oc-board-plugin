@@ -77,7 +77,7 @@ class Categories extends ComponentBase
     protected function loadCategories()
     {
         if (!$this->property('displayEmpty')) {
-            $categories = Category::withCount('posts')->getNested();
+            $categories = Category::with(['thumb', 'photo'])->withCount('posts')->getNested();
 
             $categories = $categories->filter(function($item) {
                 if ($item->posts_count) {
@@ -86,7 +86,7 @@ class Categories extends ComponentBase
             });
         }
         else {
-            $categories = Category::withCount('posts')->getNested();
+            $categories = Category::with(['thumb', 'photo'])->withCount('posts')->getNested();
         }
 
         /*

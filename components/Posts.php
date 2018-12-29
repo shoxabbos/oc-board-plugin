@@ -167,14 +167,14 @@ class Posts extends ComponentBase
     {
         $category = $this->category ? $this->category->id : null;
 
-        $posts = Post::listFrontEnd([
+        $posts = Post::with(['images'])->listFrontEnd([
             'page'             => $this->property('pageNumber'),
             'sort'             => $this->property('sortOrder'),
-            'perPage'          => $this->property('postsPerPage'),
             'search'           => trim(input('query')),
+            'perPage'          => $this->property('postsPerPage'),
+            'category'         => $category,
             'location'         => trim(input('location')),
             'properties'       => input('properties'),
-            'category'         => $category,
         ]);
 
         /*
