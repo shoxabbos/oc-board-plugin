@@ -32,7 +32,7 @@ class Wishlist extends ComponentBase
                 'title'       => 'shohabbos.board::lang.settings.posts_post',
                 'description' => 'shohabbos.board::lang.settings.posts_post_description',
                 'type'        => 'dropdown',
-                'default'     => 'detail',
+                'default'     => 'post/detail',
                 'group'       => 'Links',
             ],
             'showMessage' => [

@@ -38,13 +38,13 @@ class Post extends ComponentBase
                 'title'       => 'shohabbos.board::lang.settings.post_category',
                 'description' => 'shohabbos.board::lang.settings.post_category_description',
                 'type'        => 'dropdown',
-                'default'     => 'blog/category',
+                'default'     => 'list',
             ],
             'postPage' => [
                 'title'       => 'shohabbos.board::lang.settings.posts_post',
                 'description' => 'shohabbos.board::lang.settings.posts_post_description',
                 'type'        => 'dropdown',
-                'default'     => 'detail',
+                'default'     => 'post/detail',
             ],
             'postsPerPage' => [
                 'title'             => 'shohabbos.board::lang.settings.posts_per_page',

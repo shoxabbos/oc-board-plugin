@@ -1,4 +1,4 @@
-<div class="block-item">
+<div class="block-item {{post.status}}">
     <div class="block-item-container clearfix">
         <a href="{{post.url}}" class="block-item-image">
             <img src="{{ post.images[0].path|resize(358, 268, {mode: 'crop'}) }}" class="img-responsive" alt="">
@@ -31,4 +31,23 @@
             </div>
         </div>
     </div>
+
+    <div class="post-controls">
+        <span class="btn"> <span class="glyphicon glyphicon-eye-open"></span> Просмотры: {{post.views}} </span> 
+            <span class="text-muted">|</span>
+
+        <a href="{{post.editPage}}" 
+            class="btn btn-link"> <span class="glyphicon glyphicon-pencil"></span> редактировать </a> 
+            <span class="text-muted">|</span>
+        
+        {% if post.status == 'active' %}
+            <a href="#" class="btn btn-link"> <span class="glyphicon glyphicon-remove"></span> деактивировать </a>
+        {% elseif post.status == 'inactive' %}
+            <a href="#" class="btn btn-link"> <span class="glyphicon glyphicon-ok"></span> активировать </a>
+        {% endif %}
+
+        <a href="{{post.advertisingPage}}" class="btn btn-danger"> <span class="glyphicon glyphicon-flash"></span> рекламировать </a>
+    </div>
+    
+
 </div>

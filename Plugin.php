@@ -99,7 +99,6 @@ class Plugin extends PluginBase
             'Shohabbos\Board\Components\Posts' => 'boardPosts',
             'Shohabbos\Board\Components\Helper' => 'boardHelper',
             'Shohabbos\Board\Components\UserPost' => 'boardUserPost',
-            'Shohabbos\Board\Components\PostForm' => 'boardPostForm',
             'Shohabbos\Board\Components\Wishlist' => 'boardWishlist',
             'Shohabbos\Board\Components\Categories' => 'boardCategories',
         ];

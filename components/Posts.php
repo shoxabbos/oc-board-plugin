@@ -101,14 +101,14 @@ class Posts extends ComponentBase
                 'title'       => 'shohabbos.board::lang.settings.posts_category',
                 'description' => 'shohabbos.board::lang.settings.posts_category_description',
                 'type'        => 'dropdown',
-                'default'     => 'blog/category',
+                'default'     => 'list',
                 'group'       => 'Links',
             ],
             'postPage' => [
                 'title'       => 'shohabbos.board::lang.settings.posts_post',
                 'description' => 'shohabbos.board::lang.settings.posts_post_description',
                 'type'        => 'dropdown',
-                'default'     => 'blog/post',
+                'default'     => 'post/detail',
                 'group'       => 'Links',
             ]
         ];
