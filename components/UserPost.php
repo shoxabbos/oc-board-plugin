@@ -4,6 +4,7 @@ use Auth;
 use Flash;
 use Input;
 use Cookie;
+use Redirect;
 use Validator;
 use Cms\Classes\Page;
 use ValidationException;
@@ -16,6 +17,7 @@ use Shohabbos\Board\Models\PostProperty;
 class UserPost extends ComponentBase
 {
 
+    public $slug;
     public $user;
     public $posts;
     public $postPage;
@@ -23,6 +25,7 @@ class UserPost extends ComponentBase
     public $postPerPage;
     public $postEditPage;
     public $noPostsMessage;
+    public $redirectAfterForm;
     public $postAdvertisingPage;
 
     public function componentDetails()
@@ -36,6 +39,12 @@ class UserPost extends ComponentBase
     public function defineProperties()
     {
         return [
+            'slug' => [
+                'title'       => 'Параметр URL',
+                'description' => 'Параметр маршрута, необходимый для выбора конкретной записи.',
+                'default'     => '{{ :slug }}',
+                'type'        => 'string'
+            ],
             'pageNumber' => [
                 'title'       => 'Параметр постраничной навигации',
                 'description' => 'Параметр, необходимый для постраничной навигации.',
@@ -54,6 +63,13 @@ class UserPost extends ComponentBase
                 'description' => 'Название страницы для ссылки "редактировать". Это свойство используется по умолчанию компонентом.',
                 'type'        => 'dropdown',
                 'default'     => 'post/edit',
+                'group'       => 'Links',
+            ],
+            'redirectAfterForm' => [
+                'title'       => 'Перенаправление',
+                'description' => 'Перенаправление после форма: добавления, редактирования, рекламировать',
+                'type'        => 'dropdown',
+                'default'     => 'profile',
                 'group'       => 'Links',
             ],
             'postAdvertisingPage' => [
@@ -97,11 +113,13 @@ class UserPost extends ComponentBase
 
     protected function prepareVars() {
         $this->user = Auth::getUser();
+        $this->slug = $this->page['slug'] = $this->property('slug');
         $this->postPage = $this->page['postPage'] = $this->property('postPage');
         $this->pageParam = $this->page['pageParam'] = $this->paramName('pageNumber');
         $this->postPerPage = $this->page['postPerPage'] = $this->property('postPerPage');
         $this->postEditPage = $this->page['postEditPage'] = $this->property('postEditPage');
         $this->noPostsMessage = $this->page['noPostsMessage'] = $this->property('noPostsMessage');
+        $this->redirectAfterForm = $this->page['redirectAfterForm'] = $this->property('redirectAfterForm');
         $this->postAdvertisingPage = $this->page['postAdvertisingPage'] = $this->property('postAdvertisingPage');
     }
 
@@ -120,6 +138,16 @@ class UserPost extends ComponentBase
 
     public function getCategories() {
         return Category::getNested();
+    }
+
+    public function loadPost() {
+        $post = Post::where('user_id', $this->user->id)->where('slug', $this->slug)->first();
+
+        if ($post) {
+            $post->setUrl($this->postPage, $this->controller);
+        }
+
+        return $post;
     }
 
     public function loadPosts() {
@@ -149,6 +177,84 @@ class UserPost extends ComponentBase
 
     // ---------------------------- handlers ----------------------------
 
+    public function onRemovePhoto() {
+        $post = $this->loadPost();
+        $photo = $post->images()->where('id', input('id'))->first();
+
+        if (!$photo) {
+            throw new ValidationException(['message' => 'Запись не найден']);
+        }
+
+        $photo->delete();
+    }
+
+    public function onEditPost() {
+        $post = $this->loadPost();
+
+        if (!$post) {
+            throw new ValidationException(['message' => 'Запись не найден']);
+        }
+
+        unset($post->url);
+
+        $data = Input::only([
+            'title', 'content', 'category_id', 'location_id', 'amount', 'is_contract',
+            'phone', 'email', 'contact_name', 'images', 'properties'
+        ]);
+
+        $rules = [
+            'title' => 'required|min:10',
+            'content' => 'required|min:20',
+            'category_id' => 'required|exists:shohabbos_board_categories,id',
+            'location_id' => 'required|exists:shohabbos_board_locations,id',
+            'phone' => 'required|min:7',
+            'email' => 'required|email',
+            'amount' => 'required|integer',
+            'is_contract' => 'boolean',
+            'contact_name' => 'required|min:2',
+            'images' => 'sometimes|required',
+            'images.*' => 'image|mimes:jpg,jpeg,png,gif,bmp|dimensions:min_width=500,min_height=300',
+            'properties' => 'sometimes|required',
+        ];
+
+        $validation = Validator::make($data, $rules);
+
+        if ($validation->fails()) {
+            throw new ValidationException($validation);
+        }
+
+        try {
+            $post->properties()->delete();
+            $data['status'] = 'new';
+            $properties = [];
+            
+            if (!empty($data['properties'])) {
+                foreach ($data['properties'] as $key => $value) {
+                    if (empty($value)) {
+                        continue;
+                    }
+
+                    $properties[] = new PostProperty([
+                        'category_id' => $data['category_id'],
+                        'property_id' => $key,
+                        'value'       => $value
+                    ]);
+                }
+            }
+
+            $post->fill($data)->save();
+
+            if (!empty($properties)) {
+                $post->properties()->addMany($properties);
+            }
+
+        } catch (Exception $e) {
+            throw new ValidationException($e);
+        }
+
+        return Redirect::to($this->redirectAfterForm);
+    }
+
     public function onCreatePost() {
         $user = Auth::getUser();
         $data = Input::only([
@@ -170,7 +276,7 @@ class UserPost extends ComponentBase
             'is_contract' => 'boolean',
             'contact_name' => 'required|min:2',
             'images' => 'required',
-            'images.*' => 'image|mimes:jpg,jpeg,png,gif,bmp',
+            'images.*' => 'image|mimes:jpg,jpeg,png,gif,bmp|dimensions:min_width=500,min_height=300',
             'properties' => 'sometimes|required',
         ];
 
@@ -190,7 +296,7 @@ class UserPost extends ComponentBase
                         'property_id' => $key,
                         'value'       => $value
                     ]);
-                }    
+                }
             }
 
             $data['status'] = 'new'; 
@@ -203,6 +309,8 @@ class UserPost extends ComponentBase
         } catch (Exception $e) {
             throw new ValidationException($e);
         }
+
+        return Redirect::to($this->redirectAfterForm);
     }
 
 

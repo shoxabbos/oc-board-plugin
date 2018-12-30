@@ -1,14 +1,16 @@
+{% set post = __SELF__.loadPost() %}
 {% set categories = __SELF__.getCategories() %}
 {% set locations = __SELF__.getLocations() %}
 
-<form data-request="onCreatePost"
+<form data-request="onEditPost"
     data-request-files
     data-request-flash />
+
     <div class="content-inner-block">
         <div class="form-group">
             <label for="postTitle"><small>{{'Заголовок'|_}}<i>*</i></small></label>
             <div class="input-group-lg">
-                <input 
+                <input value="{{post.title}}" 
                     id="postTitle" type="text" 
                     name="title" class="form-control" 
                     data-text="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." 
@@ -31,7 +33,7 @@
                     {% for category in categories %}
                     <optgroup label="{{category.name}}">
                         {% for categoryChil in category.children %}
-                            <option value="{{categoryChil.id}}"> {{categoryChil.name}} </option>
+                            <option {{post.category_id == categoryChil.id ? 'selected' }} value="{{categoryChil.id}}"> {{categoryChil.name}} </option>
                         {% endfor %}
                     </optgroup>
                     {% endfor %}
@@ -40,44 +42,35 @@
         </div>
         
         <div id="formProperties">
-            
+            {% partial __SELF__ ~ '::properties' properties = post.category.properties %}
         </div>
         
         <div class="form-group">
             <label for="postContent"><small> {{'Описание'|_}} <i>*</i></small></label>
             <textarea name="content" id="postContent" rows="7" 
                 class="form-control" 
-                data-text="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."></textarea>
+                data-text="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">{{post.content}}</textarea>
         </div>
         
         <div class="form-group">
             <label for=""><small> {{'Фотографии'|_}} </small></label>
             <div class="five-columns clearfix">
-                <div class="five-columns-item">
-                    <label class="file-photo">
-                        <input type="file" name="images[0]" onchange="readURL(this);">
-                    </label>
-                </div>
-                <div class="five-columns-item">
-                    <label class="file-photo">
-                        <input type="file" name="images[1]" onchange="readURL(this);">
-                    </label>
-                </div>
-                <div class="five-columns-item">
-                    <label class="file-photo">
-                        <input type="file" name="images[2]" onchange="readURL(this);">
-                    </label>
-                </div>
-                <div class="five-columns-item">
-                    <label class="file-photo">
-                        <input type="file" name="images[3]" onchange="readURL(this);">
-                    </label>
-                </div>
-                <div class="five-columns-item">
-                    <label class="file-photo">
-                        <input type="file" name="images[4]" onchange="readURL(this);">
-                    </label>
-                </div>
+
+                {% for i in 0..4 %}
+                    <div class="five-columns-item text-center">
+                        <label class="file-photo {{post.images[i] ? 'has-file'}}" 
+                            style="background-image: url({{post.images[i] ? post.images[i].getThumb(150, 100)}});">
+                            <input type="file" name="images[{{ i }}]" onchange="readURL(this);">
+
+                            {% if post.images[i] %}
+                                <a href="#" data-request="onRemovePhoto" data-request-success="removeFile($(this));" data-request-flash data-request-data="id: {{post.images[i].id}}" class="btn btn-danger btn-sm"> <span class="glyphicon glyphicon-remove"></span> </a>
+                            {% endif %}
+                        </label>
+
+                    </div>
+                {% endfor %}
+
+                
             </div>
         </div>
     </div>
@@ -96,7 +89,7 @@
                             {% for location in locations %}
                             <optgroup label="{{location.name}}">
                                 {% for locationChil in location.children %}
-                                    <option value="{{locationChil.id}}"> {{locationChil.name}} </option>
+                                    <option {{ post.location_id == locationChil.id ? 'selected' }} value="{{locationChil.id}}"> {{locationChil.name}} </option>
                                 {% endfor %}
                             </optgroup>
                             {% endfor %}
@@ -109,7 +102,7 @@
                     <div class="input-group-lg">
                         <input id="postEmail" name="email"
                             type="text" class="form-control" 
-                            value="{{user.email}}"
+                            value="{{post.email}}"
                             data-text="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
                             placeholder="{{'Email'}}" />
                     </div>
@@ -123,7 +116,7 @@
                     <div class="input-group-lg">
                         <input id="postContactName" name="contact_name"
                             type="text" class="form-control" 
-                            value="{{user.name}}"
+                            value="{{post.contact_name}}"
                             data-text="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
                             placeholder="{{'Контактное лицо'|_}}" />
                     </div>
@@ -134,19 +127,19 @@
                     <div class="input-group-lg">
                         <input id="postPhone" type="text" 
                             class="form-control" name="phone"
-                            value="{{user.phone}}"
+                            value="{{post.phone}}"
                             data-text="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." 
                             placeholder="{{'Телефон'|_}}">
                     </div>
                 </div>
         
             </div>
-            
+
             <div class="col-sm-6">
                 <div class="form-group">
                     <label for="postAmount"><small> {{'Цена'|_}} </small></label>
                     <div class="input-group-lg">
-                        <input id="postAmount" name="amount" type="number" class="form-control" placeholder="{{'Цена'|_}}" />
+                        <input id="postAmount" name="amount" type="number" class="form-control" value="{{post.getOriginal('amount')}}" placeholder="{{'Цена'|_}}" />
                     </div>
                 </div>
             </div>
@@ -154,7 +147,9 @@
             <div class="col-sm-6">
                 <div class="input-group-lg">
                     <div class="checkbox">
-                        <label> <input type="checkbox" name="is_contract" value="1"> {{'Договорная'|_}} </label>
+                        <label> 
+                            <input type="checkbox" {{post.is_contract ? 'checked' }} name="is_contract" value="1"> {{'Договорная'|_}} 
+                        </label>
                     </div>
                 </div>
             </div>
@@ -165,7 +160,7 @@
     <div class="content-inner-block">
         <div class="text-right text-center-xs">
             <div class="word-spacing">
-                <a href="#" class="btn btn-lg btn-link"> {{'Предпросмотор'|_}} </a>
+                <a href="{{post.url}}" target="_blank" class="btn btn-lg btn-link"> {{'Предпросмотор'|_}} </a>
                 <div class="mbs visible-xs"></div>
                 <button class="btn btn-lg btn-danger" data-attach-loading>
                     <i class="material-icons valign-middle">add_circle_outline</i> 
@@ -178,8 +173,22 @@
 </form>
 
 
-{% put styles %}
+<style>
+.five-columns a.btn.btn-danger.btn-sm {
+    position: absolute;
+    right: 0px;
+    border-radius: 0;
+    padding: 5px 8px;
+}       
+</style>
+
+{% put scripts %}
 <script>
+function removeFile(object) {
+    object.parent().removeClass('has-file').attr('style', '');
+    object.remove();
+}
+
 function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
