@@ -1,0 +1,126 @@
+{% set plans = __SELF__.getPlans()  %}
+{% set post = __SELF__.loadPost()  %}
+
+<form data-request="onAdvertising" data-request-flash>
+
+    <div class="content-inner-block">
+        <div class="content-inner-description">
+            <ul id="postPlans" class="checkbox-list">
+                {% for plan in plans %}
+                {% set postPlan = post.getPlan(plan.id) %}
+                <li class=" {{postPlan ? 'active' }} ">
+                    <label class="checkbox">
+                        <input type="checkbox" name="plan[{{plan.id}}]" value="{{plan.amount}}" {{ postPlan ? 'checked disabled' }}>
+
+                        <span class="checkbox-label">
+                            <span class="clearfix">
+                                <span class="pull-left">
+                                    <span class="checkbox-icon"></span>
+                                    <span>{{plan.name}}</span> <br>
+                                    <a class="btn btn-link more-link"> {{'Подробнее'|_}} </a>
+                                </span>
+
+                                <span class="pull-right">
+                                    <b> {{plan.amount}} сум</b> 
+                                    
+                                    {% if postPlan %}
+                                        <br>
+                                        <span> {{ "Активин до: :date"|_({date: postPlan.pivot.expires_at|date('d/m/y H:i')}) }} </span>
+                                    {% endif %}
+                                </span>
+                            </span> 
+
+                            <div class="hidden more-content">
+                                <hr>
+                                <p >{{plan.description}}</p>
+                            </div>
+                        </span>
+                    </label>
+                </li>
+                {% endfor %}
+            </ul>
+        </div> 
+    </div>
+
+    <div class="content-inner-block">
+        <div class="content-inner-description">
+            <div class="text-center">
+                <span class="font-light" style="font-size:22px;">{{'Всего к оплате'|_}}: <span id="planAllPrice">0</span> сум</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-inner-block">
+        <div class="content-inner-description">
+            <div class="text-right text-center-xs">
+                <div class="word-spacing">
+                    <a href="{{'profile'|page}}" class="btn btn-lg btn-link"> {{'Отмена'|_}} </a>
+                    <div class="mbs visible-xs"></div>
+                    <button type="submit" class="btn btn-lg btn-danger" data-attach-loading>
+                        <span class="mhm"> {{'Оплатить'|_}} </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+
+
+
+
+
+
+
+<!-- additional styles and scripts -->
+
+{% put scripts %}
+<script>
+countPrice();
+
+
+
+$("#postPlans li .more-link").click(function(event) {
+    event.stopPropagation();
+
+    $(this).closest('label.checkbox').find('.more-content').toggleClass('hidden');
+});
+
+$("#postPlans li label").click(function() {
+    countPrice();
+}); 
+
+function countPrice() {
+    var price = 0;
+    $("#postPlans li label input:checked").each(function(data) {
+        
+        if (!$(this).attr('disabled')) {
+            price += parseInt($(this).val());
+        }
+
+    });
+
+    if (price) {
+        $('form .content-inner-block button.btn').removeClass('disabled');
+    } else {
+        $('form .content-inner-block button.btn').addClass('disabled');
+    }
+
+    $(".content-inner-block #planAllPrice").text(price);
+}
+</script>
+{% endput %}
+
+{% put styles %}
+<style>
+    .checkbox-list li.active hr {
+        border-color: #fff;
+    }
+
+    .checkbox > input:disabled ~ .checkbox-label {
+        background-color: #c9f780;
+        border-color: #037521;
+    }
+</style>
+{% endput %}

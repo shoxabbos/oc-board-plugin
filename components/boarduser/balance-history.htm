@@ -1,0 +1,26 @@
+ <table class="table table-striped">
+ 	<thead>
+ 		<tr>
+ 			<th> {{'Дата'|_}} </th>
+ 			<th> {{'Номер операции'|_}} </th>
+ 			<th> {{'Заголовок'|_}} </th>
+ 			<th> {{'Сумма'|_}} </th>
+ 		</tr>
+ 	</thead>
+
+ 	<tbody>
+	 	{% for item in user.history().orderByDesc('id').get() %}
+			<tr>
+				<td> {{item.created_at|date('H:i d/m/y')}} </td>
+				<td> {{item.id}} </td>
+				<td> {{item.message}} </td>
+				<td> {{item.amount}} </td>
+			</tr>
+	 	{% else %}
+			<tr>
+				<td colspan="4" class="text-center"> {{'Нет данных'|_}} </td>
+			</tr>
+	 	{% endfor %}
+ 	</tbody>
+
+ </table>

@@ -20,6 +20,9 @@ permissions:
     manage_locations:
         tab: 'shohabbos.board::lang.plugin.name'
         label: 'Manage locations'
+    manage_balance_history:
+        tab: 'shohabbos.board::lang.plugin.name'
+        label: 'Balance history'
 navigation:
     board:
         label: 'shohabbos.board::lang.menu.main_menu'
@@ -59,3 +62,9 @@ navigation:
                 icon: icon-reorder
                 permissions:
                     - manage_locations
+            board-balance-history:
+                label: 'История баланса'
+                url: shohabbos/board/balancehistory
+                icon: icon-history
+                permissions:
+                    - manage_balance_history

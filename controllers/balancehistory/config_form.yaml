@@ -1,0 +1,10 @@
+name: BalanceHistory
+form: $/shohabbos/board/models/balancehistory/fields.yaml
+modelClass: Shohabbos\Board\Models\BalanceHistory
+defaultRedirect: shohabbos/board/balancehistory
+create:
+    redirect: 'shohabbos/board/balancehistory/update/:id'
+    redirectClose: shohabbos/board/balancehistory
+update:
+    redirect: shohabbos/board/balancehistory
+    redirectClose: shohabbos/board/balancehistory

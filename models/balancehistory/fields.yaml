@@ -1,0 +1,22 @@
+fields:
+    user:
+        label: Пользователь
+        nameFrom: name
+        descriptionFrom: surname
+        list: $/rainlab/user/models/user/columns.yaml
+        span: auto
+        required: 1
+        type: recordfinder
+    amount:
+        label: Сумма
+        span: auto
+        placeholder: '-3 000 сум'
+        required: 1
+        type: text
+    message:
+        label: Описание
+        size: small
+        span: full
+        placeholder: 'Пополнение счета'
+        required: 1
+        type: textarea

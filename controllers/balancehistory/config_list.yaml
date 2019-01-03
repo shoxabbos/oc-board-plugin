@@ -1,0 +1,12 @@
+title: BalanceHistory
+modelClass: Shohabbos\Board\Models\BalanceHistory
+list: $/shohabbos/board/models/balancehistory/columns.yaml
+recordUrl: 'shohabbos/board/balancehistory/update/:id'
+noRecordsMessage: 'backend::lang.list.no_records'
+recordsPerPage: 20
+showSetup: true
+showCheckboxes: true
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'

@@ -1,0 +1,26 @@
+columns:
+    id:
+        label: ID
+        type: number
+        searchable: true
+    user_id:
+        label: Пользователь
+        type: number
+        searchable: true
+        relation: user
+        valueFrom: name
+    message:
+        label: Описание
+        type: text
+        searchable: true
+    amount:
+        label: Сумма
+        type: text
+        searchable: true
+    created_at:
+        label: 'Дата создания'
+        type: datetime
+    updated_at:
+        label: 'Дата обновления'
+        type: datetime
+        invisible: true

@@ -15,7 +15,7 @@ class Post extends Model
 
     public $jsonable = ['attrs'];
 
-    public $guarded = ['id'];
+    public $guarded = ['id', 'url'];
 
     public $slugs = ['slug' => 'title'];
 
@@ -52,7 +52,12 @@ class Post extends Model
     ];
     
     public $belongsToMany = [
-        'plans' => [Plan::class, 'table' => 'shohabbos_board_post_plan']
+        'plans' => [
+            Plan::class, 
+            'table' => 'shohabbos_board_post_plan', 
+            'timestamps' => true,
+            'pivot' => ['created_at', 'updated_at', 'expires_at']
+        ]
     ];
     
     public $hasMany = [
@@ -75,6 +80,10 @@ class Post extends Model
 
     public function getAmountAttribute($value) {
         return number_format($value);
+    }
+
+    public function getPlan($id) {
+        return $this->plans()->where('plan_id', $id)->first();
     }
 
     public function isFav() {

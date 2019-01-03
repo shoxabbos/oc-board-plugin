@@ -1,6 +1,7 @@
 <?php namespace Shohabbos\Board\Models;
 
 use Model;
+use Carbon\Carbon;
 
 /**
  * Model
@@ -27,6 +28,15 @@ class Plan extends Model
     public $rules = [
     ];
 
+    public $belongsToMany = [
+        'posts' => [
+            Post::class, 
+            'table' => 'shohabbos_board_post_plan', 
+            'timestamps' => true,
+            'pivot' => ['created_at', 'updated_at', 'expires_at']
+        ]
+    ];
+
     public function getTypeOptions() {
         return [
             'up' => 'Up',
@@ -34,4 +44,10 @@ class Plan extends Model
             'vip' => 'Vip'
         ];
     }
+
+    public function getExpires() {
+        return Carbon::now()->addDay($this->days);
+    }
+
+
 }

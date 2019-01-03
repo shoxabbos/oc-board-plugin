@@ -10,11 +10,12 @@ use Cms\Classes\Page;
 use ValidationException;
 use Cms\Classes\ComponentBase;
 use Shohabbos\Board\Models\Post;
+use Shohabbos\Board\Models\Plan;
 use Shohabbos\Board\Models\Category;
 use Shohabbos\Board\Models\Location;
 use Shohabbos\Board\Models\PostProperty;
 
-class UserPost extends ComponentBase
+class BoardUser extends ComponentBase
 {
 
     public $slug;
@@ -140,6 +141,10 @@ class UserPost extends ComponentBase
         return Category::getNested();
     }
 
+    public function getPlans() {
+        return Plan::orderBy('id')->get();
+    }
+
     public function loadPost() {
         $post = Post::where('user_id', $this->user->id)->where('slug', $this->slug)->first();
 
@@ -176,6 +181,44 @@ class UserPost extends ComponentBase
 
 
     // ---------------------------- handlers ----------------------------
+
+    public function onAdvertising() {
+        $post = $this->loadPost();
+
+        if (!$post) {
+            throw new ValidationException(['message' => 'Запись не найден']);
+        }
+
+        $data = Input::only(['plan']);
+
+        $rules = [
+            'plan' => 'required',
+            'plan.*' => 'required|integer',
+        ];
+
+        $validation = Validator::make($data, $rules);
+
+        if ($validation->fails()) {
+            throw new ValidationException($validation);
+        }
+
+
+        try {
+            // something
+            $keys = array_keys($data['plan']);
+            $plans = Plan::whereIn('id', $keys)->get();
+
+            foreach ($plans as $plan) {
+                $pivotData = ['expires_at' => $plan->getExpires()];
+                $post->plans()->add($plan, $pivotData);
+            }
+
+        } catch (Exception $e) {
+            throw new ValidationException($e);
+        }
+ 
+        return Redirect::to($this->redirectAfterForm);
+    }
 
     public function onRemovePhoto() {
         $post = $this->loadPost();
@@ -313,7 +356,6 @@ class UserPost extends ComponentBase
         return Redirect::to($this->redirectAfterForm);
     }
 
-
     public function onLoadProperties() {
         $user = Auth::getUser();
         $data = Input::only(['category_id']);
@@ -334,7 +376,5 @@ class UserPost extends ComponentBase
 
         $this->page['properties'] = $category->properties;
     }
-
-
 
 }

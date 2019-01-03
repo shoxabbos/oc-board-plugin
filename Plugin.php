@@ -24,6 +24,7 @@ class Plugin extends PluginBase
 
             $model->belongsTo['location'] = 'Shohabbos\Board\Models\Location';
             $model->hasMany['posts'] = 'Shohabbos\Board\Models\Post';
+            $model->hasMany['history'] = 'Shohabbos\Board\Models\BalanceHistory';
         });
 
 
@@ -98,8 +99,8 @@ class Plugin extends PluginBase
             'Shohabbos\Board\Components\Post' => 'boardPost',
             'Shohabbos\Board\Components\Posts' => 'boardPosts',
             'Shohabbos\Board\Components\Helper' => 'boardHelper',
-            'Shohabbos\Board\Components\UserPost' => 'boardUserPost',
             'Shohabbos\Board\Components\Wishlist' => 'boardWishlist',
+            'Shohabbos\Board\Components\BoardUser' => 'boardUserPost',
             'Shohabbos\Board\Components\Categories' => 'boardCategories',
         ];
     }
