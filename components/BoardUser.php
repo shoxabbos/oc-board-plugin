@@ -14,6 +14,7 @@ use Shohabbos\Board\Models\Plan;
 use Shohabbos\Board\Models\Category;
 use Shohabbos\Board\Models\Location;
 use Shohabbos\Board\Models\PostProperty;
+use Shohabbos\Board\Models\BalanceHistory;
 
 class BoardUser extends ComponentBase
 {
@@ -202,15 +203,33 @@ class BoardUser extends ComponentBase
             throw new ValidationException($validation);
         }
 
+        // something
+        $keys = array_keys($data['plan']);
+        $sum = Plan::whereIn('id', $keys)->sum('amount');
+
+        if ($this->user->balance < $sum) {
+            throw new ValidationException(['message' => 'На вашем счету не достаточно средств']);
+        }
 
         try {
-            // something
-            $keys = array_keys($data['plan']);
             $plans = Plan::whereIn('id', $keys)->get();
+            
 
             foreach ($plans as $plan) {
                 $pivotData = ['expires_at' => $plan->getExpires()];
                 $post->plans()->add($plan, $pivotData);
+
+                $amount = number_format($plan->amount, 0, ' ', ' ');
+                $expires = $plan->getExpires()->format('H:i d/m/Y');
+
+                $this->user->balance -= $plan->amount;
+                if ($this->user->save()) {
+                    $this->user->history()->add(new BalanceHistory([
+                        'amount' => "-{$amount} сум",
+                        'message' => "Платная услуга \"{$plan->name}\" до {$expires}"
+                    ]));
+                }
+
             }
 
         } catch (Exception $e) {

@@ -19,3 +19,9 @@ plans:
         form: $/shohabbos/board/models/plan/fields.yaml
         recordsPerPage: 10
         showSearch: true
+    pivot:
+        form:
+            fields:
+                pivot[expires_at]:
+                    label: 'Срок действия'
+                    type: datepicker

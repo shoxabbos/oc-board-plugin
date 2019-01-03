@@ -28,6 +28,7 @@ class Posts extends Controller
         BackendMenu::setContext('Shohabbos.Board', 'board', 'board-posts');
     }
 
+
     
     public function formAfterSave($model)
     {
@@ -43,8 +44,18 @@ class Posts extends Controller
                     'value' => is_array($value) ? json_encode($value) : $value,
                 ]);
             }
-
         }
+
+
+        if ($model->plans) {
+            foreach ($model->plans as $key => $value) {
+                if (empty($value->pivot->expires_at)) {
+                    $value->pivot->expires_at = $value->getExpires();
+                    $value->pivot->save();
+                }
+            }
+        }
+
     } 
 
 

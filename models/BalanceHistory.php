@@ -21,6 +21,8 @@ class BalanceHistory extends Model
     public $rules = [
     ];
 
+    public $fillable = ['amount', 'message'];
+
     public $belongsTo = [
         'user' => 'RainLab\User\Models\User',
     ];
