@@ -178,11 +178,17 @@ class BoardUser extends ComponentBase
         return $posts;
     }
     
-
+    public function loadHistory($page = 1, $count = 15) {
+        return $this->user->history()->orderByDesc('id')->paginate($count, $page);
+    }
 
 
     // ---------------------------- handlers ----------------------------
 
+    public function onLoadHistory() {
+        $this->page['history'] = $this->loadHistory(input('page'));
+    }
+ 
     public function onAdvertising() {
         $post = $this->loadPost();
 
@@ -287,7 +293,7 @@ class BoardUser extends ComponentBase
 
         try {
             $post->properties()->delete();
-            $data['status'] = 'new';
+            $data['status'] = Post::STATUS_PENDING;
             $properties = [];
             
             if (!empty($data['properties'])) {
@@ -361,7 +367,7 @@ class BoardUser extends ComponentBase
                 }
             }
 
-            $data['status'] = 'new'; 
+            $data['status'] = Post::STATUS_PENDING; 
             $model = Post::create($data);
 
             if (!empty($properties)) {

@@ -97,6 +97,12 @@ class Posts extends ComponentBase
                 'type'        => 'dropdown',
                 'default'     => 'created_at desc'
             ],
+            'status' => [
+                'title'       => 'shohabbos.board::lang.settings.posts_status',
+                'description' => 'shohabbos.board::lang.settings.posts_status_description',
+                'type'        => 'dropdown',
+                'default'     => Post::STATUS_ACTIVE
+            ],
             'categoryPage' => [
                 'title'       => 'shohabbos.board::lang.settings.posts_category',
                 'description' => 'shohabbos.board::lang.settings.posts_category_description',
@@ -127,6 +133,11 @@ class Posts extends ComponentBase
     public function getSortOrderOptions()
     {
         return Post::$allowedSortingOptions;
+    }
+
+    public function getStatusOptions()
+    {
+        return Post::$allowedStatusOptions;
     }
 
     public function onRun()
@@ -170,6 +181,7 @@ class Posts extends ComponentBase
         $posts = Post::with(['images'])->listFrontEnd([
             'page'             => $this->property('pageNumber'),
             'sort'             => $this->property('sortOrder'),
+            'status'           => $this->property('status'),
             'search'           => trim(input('query')),
             'perPage'          => $this->property('postsPerPage'),
             'category'         => $category,
@@ -265,4 +277,10 @@ class Posts extends ComponentBase
         return Category::getNested();
     }
 
+    protected function checkEditor()
+    {
+        $backendUser = BackendAuth::getUser();
+        return $backendUser && $backendUser->hasAccess('rainlab.blog.access_posts');
+    }
+    
 }

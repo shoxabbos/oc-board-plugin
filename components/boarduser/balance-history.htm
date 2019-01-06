@@ -1,3 +1,7 @@
+ {% if not history %}
+	{% set history = __SELF__.loadHistory() %}
+ {% endif %}
+ 
  <table class="table table-striped">
  	<thead>
  		<tr>
@@ -9,7 +13,7 @@
  	</thead>
 
  	<tbody>
-	 	{% for item in user.history().orderByDesc('id').get() %}
+	 	{% for item in history %}
 			<tr>
 				<td> {{item.created_at|date('H:i d/m/y')}} </td>
 				<td> {{item.id}} </td>
@@ -24,3 +28,35 @@
  	</tbody>
 
  </table>
+ 
+
+{% if history.lastPage > 1 %}
+<div class="text-center">
+    <ul class="pagination">
+        {% if history.currentPage > 1 %}
+            <li><a href="#" data-request="onLoadHistory" data-request-update="'{{__SELF__}}::balance-history': '#historyTableWrapper'" data-request-data="page: {{history.currentPage-1}}">&larr; Prev</a></li>
+        {% endif %}
+ 
+        {% for page in 1..history.lastPage %}
+            <li class="{{ history.currentPage == page ? 'active' : null }}">
+                <a href="#" data-request="onLoadHistory" data-request-update="'{{__SELF__}}::balance-history': '#historyTableWrapper'" data-request-data="page: {{page}}">{{ page }}</a>
+            </li>
+        {% endfor %}
+
+        {% if history.lastPage > history.currentPage %}
+            <li><a href="#" data-request="onLoadHistory" data-request-update="'{{__SELF__}}::balance-history': '#historyTableWrapper'" data-request-data="page: {{history.currentPage+1}}">Next &rarr;</a></li>
+        {% endif %}
+    </ul>
+</div>
+{% endif %}
+
+
+
+
+{% put styles %}
+ <style>
+ .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
+ 	font-size: 13px;
+ }
+ </style>
+ {% endput %}

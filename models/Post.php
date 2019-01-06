@@ -10,6 +10,10 @@ class Post extends Model
     use \October\Rain\Database\Traits\Validation;
     use \October\Rain\Database\Traits\Sluggable;
     use \October\Rain\Database\Traits\Nullable;
+
+    const STATUS_ACTIVE = 'active';
+    const STATUS_INACTIVE = 'inactive';
+    const STATUS_PENDING = 'pending';
     
     public $table = 'shohabbos_board_posts';
 
@@ -33,6 +37,12 @@ class Post extends Model
         'updated_at asc' => 'Updated (ascending)',
         'updated_at desc' => 'Updated (descending)',
         'random' => 'Random'
+    ];
+
+    public static $allowedStatusOptions = [
+        self::STATUS_ACTIVE => 'Активный',
+        self::STATUS_INACTIVE => 'Неактивный',
+        self::STATUS_PENDING => 'В ожидании',
     ];
 
     /**
@@ -65,14 +75,8 @@ class Post extends Model
     ];
 
     public function getStatusOptions() {
-        return [
-            'active' => 'Active',
-            'inactive' => 'Inactive',
-            'pending' => 'Pending',
-        ];
+        return self::$allowedStatusOptions;
     }
-
-
 
     //
     // Mutators
@@ -119,6 +123,7 @@ class Post extends Model
             'location'         => null,
             'properties'       => null,
             'user_id'          => null,
+            'status'           => null,
         ], $options));
 
         $searchableFields = ['title', 'content', 'slug'];
@@ -161,6 +166,10 @@ class Post extends Model
             $query->where('user_id', $user_id);
         }
         
+        if ($status) {
+            $query->where('status', $status);
+        }
+
         /*
          * Location filter
          */

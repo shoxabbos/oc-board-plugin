@@ -54,26 +54,26 @@ tabs:
             span: left
             type: text
             tab: 'shohabbos.board::lang.post.tab_main'
-        amount:
-            label: 'shohabbos.board::lang.post.amount'
-            span: auto
-            type: number
-            tab: 'shohabbos.board::lang.post.tab_main'
         contact_name:
             label: 'shohabbos.board::lang.post.contact_name'
             span: left
             type: text
+            tab: 'shohabbos.board::lang.post.tab_main'
+        views:
+            label: 'shohabbos.board::lang.post.views'
+            span: auto
+            type: number
+            tab: 'shohabbos.board::lang.post.tab_main'
+        amount:
+            label: 'shohabbos.board::lang.post.amount'
+            span: auto
+            type: number
             tab: 'shohabbos.board::lang.post.tab_main'
         status:
             label: 'shohabbos.board::lang.post.status'
             span: auto
             required: 1
             type: dropdown
-            tab: 'shohabbos.board::lang.post.tab_main'
-        views:
-            label: 'shohabbos.board::lang.post.views'
-            span: left
-            type: number
             tab: 'shohabbos.board::lang.post.tab_main'
         is_contract:
             label: 'shohabbos.board::lang.post.is_contract'

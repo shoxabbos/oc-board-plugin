@@ -4,6 +4,8 @@
         'description' => 'Фронтенд управления данными плагина',
     ],
     'settings' => [
+        'posts_status' => 'Статус',
+        'posts_status_description' => 'Атрибут, по которому будут показываться записи.',
         'category_title' => 'Список категорий',
         'category_description' => 'Отображает список категорий на странице.',
         'category_slug' => 'Параметр URL',
@@ -103,6 +105,7 @@
         'name' => 'Название',
     ],
     'post' => [
+        'location' => 'Город, регион',
         'title' => 'Название',
         'images' => 'Картинки',
         'category_id' => 'Категория',
