@@ -14,33 +14,12 @@ fields:
         type: text
 tabs:
     fields:
-        images:
-            label: 'shohabbos.board::lang.post.images'
-            mode: image
-            useCaption: true
-            thumbOptions:
-                mode: crop
-                extension: auto
-            span: right
-            type: fileupload
-            tab: 'shohabbos.board::lang.post.tab_main'
         category:
             label: 'shohabbos.board::lang.post.category_id'
             nameFrom: name
             descriptionFrom: description
-            span: left
+            span: auto
             type: relation
-            tab: 'shohabbos.board::lang.post.tab_main'
-        content:
-            label: 'shohabbos.board::lang.post.content'
-            size: large
-            span: left
-            type: textarea
-            tab: 'shohabbos.board::lang.post.tab_main'
-        phone:
-            label: 'shohabbos.board::lang.post.phone'
-            span: left
-            type: text
             tab: 'shohabbos.board::lang.post.tab_main'
         location:
             label: 'shohabbos.board::lang.post.location'
@@ -49,14 +28,19 @@ tabs:
             span: auto
             type: relation
             tab: 'shohabbos.board::lang.post.tab_main'
+        phone:
+            label: 'shohabbos.board::lang.post.phone'
+            span: auto
+            type: text
+            tab: 'shohabbos.board::lang.post.tab_main'
         email:
             label: 'shohabbos.board::lang.post.email'
-            span: left
+            span: auto
             type: text
             tab: 'shohabbos.board::lang.post.tab_main'
         contact_name:
             label: 'shohabbos.board::lang.post.contact_name'
-            span: left
+            span: auto
             type: text
             tab: 'shohabbos.board::lang.post.tab_main'
         views:
@@ -69,17 +53,43 @@ tabs:
             span: auto
             type: number
             tab: 'shohabbos.board::lang.post.tab_main'
-        status:
-            label: 'shohabbos.board::lang.post.status'
+        published_at:
+            label: 'shohabbos.board::lang.post.published_at'
+            mode: datetime
             span: auto
-            required: 1
-            type: dropdown
+            disabled: 0
+            type: datepicker
             tab: 'shohabbos.board::lang.post.tab_main'
+            trigger:
+                action: enable
+                field: published
+                condition: checked
         is_contract:
             label: 'shohabbos.board::lang.post.is_contract'
             span: auto
             default: 0
             type: checkbox
+            tab: 'shohabbos.board::lang.post.tab_main'
+        published:
+            label: 'shohabbos.board::lang.post.published'
+            span: auto
+            type: checkbox
+            tab: 'shohabbos.board::lang.post.tab_main'
+        content:
+            label: 'shohabbos.board::lang.post.content'
+            size: large
+            span: auto
+            type: textarea
+            tab: 'shohabbos.board::lang.post.tab_main'
+        images:
+            label: 'shohabbos.board::lang.post.images'
+            mode: image
+            useCaption: true
+            thumbOptions:
+                mode: crop
+                extension: auto
+            span: auto
+            type: fileupload
             tab: 'shohabbos.board::lang.post.tab_main'
         plans:
             span: full

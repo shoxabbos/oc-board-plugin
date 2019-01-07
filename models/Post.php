@@ -1,6 +1,7 @@
 <?php namespace Shohabbos\Board\Models;
 
 use Model;
+use Carbon\Carbon;
 
 /**
  * Model
@@ -10,45 +11,36 @@ class Post extends Model
     use \October\Rain\Database\Traits\Validation;
     use \October\Rain\Database\Traits\Sluggable;
     use \October\Rain\Database\Traits\Nullable;
-
-    const STATUS_ACTIVE = 'active';
-    const STATUS_INACTIVE = 'inactive';
-    const STATUS_PENDING = 'pending';
     
     public $table = 'shohabbos_board_posts';
 
     public $jsonable = ['attrs'];
 
-    public $guarded = ['id', 'url'];
-
     public $slugs = ['slug' => 'title'];
 
     public $nullable = ['amount'];
+
+    public $dates = ['published_at'];
 
     /**
      * The attributes on which the post list can be ordered
      * @var array
      */
     public static $allowedSortingOptions = [
-        'title asc' => 'Title (ascending)',
-        'title desc' => 'Title (descending)',
-        'created_at asc' => 'Created (ascending)',
-        'created_at desc' => 'Created (descending)',
-        'updated_at asc' => 'Updated (ascending)',
-        'updated_at desc' => 'Updated (descending)',
-        'random' => 'Random'
-    ];
-
-    public static $allowedStatusOptions = [
-        self::STATUS_ACTIVE => 'Активный',
-        self::STATUS_INACTIVE => 'Неактивный',
-        self::STATUS_PENDING => 'В ожидании',
+        'title asc' => 'Название (по возрастанию)',
+        'title desc' => 'Название (по убыванию)',
+        'published_at asc' => 'Дата публикации (по возрастанию)',
+        'published_at desc' => 'Дата публикации (по убыванию)',
+        'random' => 'Случайный'
     ];
 
     /**
      * @var array Validation rules
      */
     public $rules = [
+        'title' => 'required',
+        'slug' => ['required', 'unique:shohabbos_board_posts'],
+        'content' => 'required',
     ];
 
     public $attachMany = [
@@ -74,10 +66,6 @@ class Post extends Model
         'properties' => PostProperty::class,
     ];
 
-    public function getStatusOptions() {
-        return self::$allowedStatusOptions;
-    }
-
     //
     // Mutators
     //
@@ -99,6 +87,16 @@ class Post extends Model
     // Scopes
     //
 
+    public function scopeIsPublished($query)
+    {
+        return $query
+            ->whereNotNull('published')
+            ->where('published', true)
+            ->whereNotNull('published_at')
+            ->where('published_at', '<', Carbon::now())
+        ;
+    }
+
     /**
      * Lists posts for the front end
      *
@@ -115,7 +113,7 @@ class Post extends Model
         extract(array_merge([
             'page'             => 1,
             'perPage'          => 30,
-            'sort'             => 'created_at',
+            'sort'             => 'published_at desc',
             'categories'       => null,
             'category'         => null,
             'search'           => '',
@@ -123,7 +121,6 @@ class Post extends Model
             'location'         => null,
             'properties'       => null,
             'user_id'          => null,
-            'status'           => null,
         ], $options));
 
         $searchableFields = ['title', 'content', 'slug'];
@@ -159,6 +156,10 @@ class Post extends Model
             }
         }
 
+        if ($published) {
+            $query->isPublished();
+        }
+
         /*
          * Properties filter
          */
@@ -166,10 +167,6 @@ class Post extends Model
             $query->where('user_id', $user_id);
         }
         
-        if ($status) {
-            $query->where('status', $status);
-        }
-
         /*
          * Location filter
          */

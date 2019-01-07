@@ -4,8 +4,6 @@
         'description' => 'Фронтенд управления данными плагина',
     ],
     'settings' => [
-        'posts_status' => 'Статус',
-        'posts_status_description' => 'Атрибут, по которому будут показываться записи.',
         'category_title' => 'Список категорий',
         'category_description' => 'Отображает список категорий на странице.',
         'category_slug' => 'Параметр URL',
@@ -114,11 +112,12 @@
         'email' => 'Электронная почта',
         'contact_name' => 'Контактное лицо',
         'views' => 'Просмотров',
-        'status' => 'Статус',
         'tab_main' => 'Основные',
         'tab_plans' => 'Услуги',
         'amount' => 'Цена',
         'is_contract' => 'Договорная',
+        'published' => 'Опубликовано',
+        'published_at' => 'Дата публикации',
     ],
     'location' => [
         'name' => 'Имя',

@@ -168,3 +168,6 @@
 1.0.57:
     - 'Created table shohabbos_board_balance_history'
     - builder_table_create_shohabbos_board_balance_history.php
+1.0.58:
+    - 'Updated table shohabbos_board_posts'
+    - builder_table_update_shohabbos_board_posts_12.php

@@ -293,7 +293,6 @@ class BoardUser extends ComponentBase
 
         try {
             $post->properties()->delete();
-            $data['status'] = Post::STATUS_PENDING;
             $properties = [];
             
             if (!empty($data['properties'])) {
@@ -367,7 +366,6 @@ class BoardUser extends ComponentBase
                 }
             }
 
-            $data['status'] = Post::STATUS_PENDING; 
             $model = Post::create($data);
 
             if (!empty($properties)) {
