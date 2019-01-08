@@ -1,4 +1,4 @@
-<div class="block-item {{post.status}}">
+<div class="block-item">
     <div class="block-item-container clearfix">
         <a href="{{post.url}}" class="block-item-image">
             <img src="{{ post.images[0].path|resize(358, 268, {mode: 'crop'}) }}" class="img-responsive" alt="">
@@ -37,16 +37,16 @@
             <span class="text-muted">|</span>
 
         <a href="{{post.editPage}}" 
-            class="btn btn-link"> <span class="glyphicon glyphicon-pencil"></span> редактировать </a> 
+            class="btn btn-link"> <span class="glyphicon glyphicon-pencil"></span> {{'редактировать'|_}} </a> 
             <span class="text-muted">|</span>
         
-        {% if post.status == 'active' %}
-            <a href="#" class="btn btn-link"> <span class="glyphicon glyphicon-remove"></span> деактивировать </a>
-        {% elseif post.status == 'inactive' %}
-            <a href="#" class="btn btn-link"> <span class="glyphicon glyphicon-ok"></span> активировать </a>
+        {% if post.published %}
+            <a href="#" class="btn btn-link"> <span class="glyphicon glyphicon-remove"></span> {{'деактивировать'|_}} </a>
+        {% else %}
+            <a href="#" class="btn btn-link"> <span class="glyphicon glyphicon-ok"></span> {{'активировать'|_}} </a>
         {% endif %}
 
-        <a href="{{post.advertisingPage}}" class="btn btn-danger"> <span class="glyphicon glyphicon-flash"></span> рекламировать </a>
+        <a href="{{post.advertisingPage}}" class="btn btn-danger"> <span class="glyphicon glyphicon-flash"></span> {{'рекламировать'|_}} </a>
     </div>
     
 

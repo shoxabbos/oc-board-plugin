@@ -6,6 +6,7 @@ use Input;
 use Cookie;
 use Redirect;
 use Validator;
+use Carbon\Carbon;
 use Cms\Classes\Page;
 use ValidationException;
 use Cms\Classes\ComponentBase;
@@ -158,9 +159,11 @@ class BoardUser extends ComponentBase
 
     public function loadPosts() {
         $posts = Post::with(['images', 'category', 'location'])->listFrontEnd([
+            'published'        => null,
             'user_id'          => $this->user->id,
             'perPage'          => $this->postPerPage,
-            'page'             => $this->property('pageNumber')
+            'page'             => $this->property('pageNumber'),
+            'sort'             => 'id desc'
         ]);
 
         $posts->each(function($post) {
@@ -184,6 +187,35 @@ class BoardUser extends ComponentBase
 
 
     // ---------------------------- handlers ----------------------------
+
+    public function onDeactivatePost() {
+        $post = Post::find(input('id'));
+        if (!$post) {
+            throw new ValidationException(['message' => 'Запись не найден']);
+        }
+
+        $post->published = false;
+        $post->save();
+
+        return Redirect::to($this->redirectAfterForm);
+    }
+
+    public function onPublishPost() {
+        $post = Post::find(input('id'));
+        if (!$post) {
+            throw new ValidationException(['message' => 'Запись не найден']);
+        }
+        
+        if (empty($post->published_at)) {
+            Flash::info('Объявление еще не прошла модерацию.');
+        } else {
+            $post->published = true;
+            $post->published_at = Carbon::now();
+            $post->save();
+
+            return Redirect::to($this->redirectAfterForm);
+        }
+    }
 
     public function onLoadHistory() {
         $this->page['history'] = $this->loadHistory(input('page'));
@@ -329,7 +361,7 @@ class BoardUser extends ComponentBase
             throw new ValidationException($e);
         }
 
-        // return Redirect::to($this->redirectAfterForm);
+        return Redirect::to($this->redirectAfterForm);
     }
 
     public function onCreatePost() {

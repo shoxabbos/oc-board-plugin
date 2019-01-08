@@ -88,7 +88,7 @@ class Posts extends ComponentBase
                 'title'        => 'shohabbos.board::lang.settings.posts_no_posts',
                 'description'  => 'shohabbos.board::lang.settings.posts_no_posts_description',
                 'type'         => 'string',
-                'default'      => 'No posts found',
+                'default'      => 'Нет объявлений',
                 'showExternalParam' => false
             ],
             'sortOrder' => [

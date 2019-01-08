@@ -16,7 +16,7 @@ class Post extends Model
 
     public $jsonable = ['attrs'];
 
-    public $slugs = ['slug' => 'title'];
+    protected $slugs = ['slug' => 'title'];
 
     public $nullable = ['amount'];
 
@@ -29,11 +29,13 @@ class Post extends Model
      * @var array
      */
     public static $allowedSortingOptions = [
+        'id asc' => 'ID (по возрастанию)',
+        'id desc' => 'ID (по убыванию)',
         'title asc' => 'Название (по возрастанию)',
         'title desc' => 'Название (по убыванию)',
         'published_at asc' => 'Дата публикации (по возрастанию)',
         'published_at desc' => 'Дата публикации (по убыванию)',
-        'random' => 'Случайный'
+        'random' => 'Случайный',
     ];
 
     /**
@@ -41,7 +43,6 @@ class Post extends Model
      */
     public $rules = [
         'title' => 'required',
-        'slug' => ['required', 'unique:shohabbos_board_posts'],
         'content' => 'required',
     ];
 

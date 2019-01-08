@@ -10,7 +10,7 @@
         		    <label> {{property.label}} </label>
         		    <div class="input-group-lg">
         		        <select name="properties[{{ property.id }}]" class="form-control">
-            					<option value="">{{'Все'|_}}</option>
+            					<option value="">{{'Выбрать'|_}}</option>
             				{% for value in property.values %}
             					<option value="{{ value.value }}">{{value.label}}</option>
             				{% endfor %}
