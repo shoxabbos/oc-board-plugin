@@ -294,12 +294,15 @@ class BoardUser extends ComponentBase
         try {
             $post->properties()->delete();
             $properties = [];
+            $data['attrs'] = [];
             
             if (!empty($data['properties'])) {
                 foreach ($data['properties'] as $key => $value) {
                     if (empty($value)) {
                         continue;
                     }
+
+                    $data['attrs'][$key] = $value;
 
                     $properties[] = new PostProperty([
                         'category_id' => $data['category_id'],
@@ -309,6 +312,13 @@ class BoardUser extends ComponentBase
                 }
             }
 
+            // save properties as json
+            unset($data['properties']);
+
+            $data['attrs'] = [];
+            
+
+            $post->published = false;
             $post->fill($data)->save();
 
             if (!empty($properties)) {
@@ -319,7 +329,7 @@ class BoardUser extends ComponentBase
             throw new ValidationException($e);
         }
 
-        return Redirect::to($this->redirectAfterForm);
+        // return Redirect::to($this->redirectAfterForm);
     }
 
     public function onCreatePost() {

@@ -1,6 +1,10 @@
 <div class="row">
     
+    
+
     {% for property in properties %}
+
+        {{ dump(property) }}
         
         <div class="col-sm-6">
         	{% if property.filter_type == 'between' %}

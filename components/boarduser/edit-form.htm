@@ -47,8 +47,7 @@
         
         <div class="form-group">
             <label for="postContent"><small> {{'Описание'|_}} <i>*</i></small></label>
-            <textarea name="content" id="postContent" rows="7" 
-                class="form-control" 
+            <textarea name="content" id="postContent" rows="7" class="form-control" 
                 data-text="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">{{post.content}}</textarea>
         </div>
         
@@ -164,7 +163,7 @@
                 <div class="mbs visible-xs"></div>
                 <button class="btn btn-lg btn-danger" data-attach-loading>
                     <i class="material-icons valign-middle">add_circle_outline</i> 
-                    <b class="valign-middle"> {{'Подать объявление'|_}} </b>
+                    <b class="valign-middle"> {{'Сохранить'|_}} </b>
                 </button>
             </div>
         </div>
@@ -173,6 +172,9 @@
 </form>
 
 
+
+
+{% put styles %}
 <style>
 .five-columns a.btn.btn-danger.btn-sm {
     position: absolute;
@@ -181,6 +183,8 @@
     padding: 5px 8px;
 }       
 </style>
+{% endput %}
+
 
 {% put scripts %}
 <script>

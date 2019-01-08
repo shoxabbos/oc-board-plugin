@@ -21,31 +21,30 @@ fields:
     type:
         label: 'shohabbos.board::lang.property.type'
         options:
-            text: 'Text field (text)'
-            number: 'Text field (number)'
-            textarea: 'Text field (textarea)'
-            rich_editor: 'Text field (wysiwyg)'
-            single_checkbox: 'Single checkbox'
-            switch: Switch
-            checkboxlist: 'Checkbox list (checkbox)'
-            tag_list: 'Tag list'
-            dropdown: Dropdown
-            radio: 'Radio button'
-            balloon-selector: 'Balloon selector'
-            date: 'Date picker (datetime)'
-            colorpicker: 'Color picker (colorpicker)'
-            mediafinder: File
+            text: 'Текстовое поле (текст)'
+            number: 'Текстовое поле (число)'
+            textarea: 'Текстовое поле (текстовое поле)'
+            rich_editor: 'Текстовое поле (wysiwyg)'
+            single_checkbox: 'Одиночный флажок'
+            switch: Переключатель
+            checkboxlist: 'Список флажков (флажок)'
+            tag_list: 'Список тегов'
+            dropdown: 'Выпадающая кнопка'
+            radio: 'Переключатель (radio button)'
+            balloon-selector: 'Баллонный селектор'
+            date: 'Выбор даты (datetime)'
+            colorpicker: 'Выбор цвета (colorpicker)'
+            mediafinder: 'Файл (mediafinder)'
         span: auto
         required: 1
         type: dropdown
     filter_type:
         label: 'shohabbos.board::lang.property.filter_type'
         options:
-            switch: 'SWITCH - filter by one value from switch button'
-            select: 'SELECT -  filter by one value from select'
-            checkbox: 'CHECKBOX - filter by several values from the list'
-            between: 'Filter by range'
-            select_between: 'Filter by range from select'
+            switch: 'SWITCH - Переключатель'
+            select: 'SELECT -  Выпадаешьий список'
+            checkbox: Чекбокс
+            between: 'Фильтр по диапазону'
         span: auto
         type: dropdown
     values:
@@ -59,9 +58,9 @@ fields:
     'settings[datepicker]':
         label: 'shohabbos.board::lang.property.property_mode'
         options:
-            date: Date
-            datetime: 'Date and time'
-            time: Time
+            date: Дата
+            datetime: 'Дата и время'
+            time: Время
         span: auto
         trigger:
             action: show

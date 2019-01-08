@@ -174,7 +174,7 @@ class Posts extends ComponentBase
             'perPage'          => $this->property('postsPerPage'),
             'category'         => $category,
             'location'         => trim(input('location')),
-            'properties'       => input('properties'),
+            'properties'       => input('properties', []),
         ]);
 
         /*
@@ -250,7 +250,6 @@ class Posts extends ComponentBase
                 return Redirect::to($this->currentPageUrl([$pageNumberParam => $lastPage]));
         }
 
-        //return $this->renderPartial('@default.htm');
     }
 
 

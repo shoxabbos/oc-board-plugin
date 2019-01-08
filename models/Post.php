@@ -22,6 +22,8 @@ class Post extends Model
 
     public $dates = ['published_at'];
 
+    public $guarded = ['id'];
+
     /**
      * The attributes on which the post list can be ordered
      * @var array
@@ -119,10 +121,11 @@ class Post extends Model
             'search'           => '',
             'published'        => true,
             'location'         => null,
-            'properties'       => null,
+            'properties'       => [],
             'user_id'          => null,
         ], $options));
 
+        $properties = array_filter($properties);
         $searchableFields = ['title', 'content', 'slug'];
 
         /*
@@ -135,15 +138,13 @@ class Post extends Model
                 $postProperty = PostProperty::where('category_id', $category);
             }
 
-
             foreach ($properties as $key => $value) {
-                if (empty($value)) {
+                if (empty($value) || (is_array($value) && empty(array_filter($value)))) {
                     continue;
                 }
 
                 if (is_array($value)) {
-                    $postProperty->where('property_id', $key)
-                        ->whereBetween('value', $value);
+                    $postProperty->where('property_id', $key)->whereBetween('value', $value);
                 } else {
                     $postProperty->where('property_id', $key)->where('value', $value);
                 }
