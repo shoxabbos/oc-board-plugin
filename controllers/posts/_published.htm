@@ -1,0 +1,16 @@
+<?php if ($record->published) { ?>
+	<a data-request="onDeactivate" 
+		data-request-data="id: <?=$record->id?>" 
+		data-attach-loading 
+		data-request-flash 
+		class="btn btn-danger btn-xs">Деактивировать</a>
+
+<?php } else { ?>	
+	<a data-request="onPublish" 
+		data-request-data="id: <?=$record->id?>" 
+		data-attach-loading 
+		data-request-flash 
+		class="btn btn-success btn-xs">Опубликовать</a>
+
+<?php } ?>
+

@@ -36,6 +36,7 @@ columns:
     phone:
         label: 'shohabbos.board::lang.post.phone'
         type: text
+        invisible: true
     email:
         label: 'shohabbos.board::lang.post.email'
         type: text
@@ -56,3 +57,11 @@ columns:
         label: 'shohabbos.board::lang.post.amount'
         type: number
         invisible: true
+    published:
+        clickable: false
+        label: 'shohabbos.board::lang.post.published'
+        type: partial
+    published_at:
+        label: 'shohabbos.board::lang.post.published_at'
+        type: datetime
+        invisible: false

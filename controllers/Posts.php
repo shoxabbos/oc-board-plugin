@@ -2,8 +2,11 @@
 
 use Backend\Classes\Controller;
 use BackendMenu;
-
+use Redirect;
+use Carbon\Carbon;
+use ValidationException;
 use Shohabbos\Board\Models\PostProperty;
+use Shohabbos\Board\Models\Post;
 
 class Posts extends Controller
 {
@@ -78,8 +81,40 @@ class Posts extends Controller
                 ]);
             }
         }
-
         
     }
+
+
+
+
+
+    // ajax handlers 
+    public function onDeactivate() {
+        $post = Post::find(input('id'));
+        if (!$post) {
+            throw new ValidationException(['message' => 'Запись не найден']);
+        }
+
+        $post->published = false;
+        $post->save();
+
+        return Redirect::refresh();
+    }
+
+    public function onPublish() {
+        $post = Post::find(input('id'));
+        if (!$post) {
+            throw new ValidationException(['message' => 'Запись не найден']);
+        }
+
+        $post->published = true;
+        $post->published_at = Carbon::now();
+        $post->save();
+
+        return Redirect::refresh();
+    }
+
+
+
 
 }
