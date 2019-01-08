@@ -64,21 +64,30 @@ tabs:
                 action: enable
                 field: published
                 condition: checked
-        is_contract:
-            label: 'shohabbos.board::lang.post.is_contract'
+        currency:
+            label: 'shohabbos.board::lang.post.currency'
+            options:
+                uzs: Сум
+                usd: У.е
             span: auto
-            default: 0
-            type: checkbox
+            required: 1
+            type: dropdown
             tab: 'shohabbos.board::lang.post.tab_main'
         published:
             label: 'shohabbos.board::lang.post.published'
             span: auto
             type: checkbox
             tab: 'shohabbos.board::lang.post.tab_main'
+        is_contract:
+            label: 'shohabbos.board::lang.post.is_contract'
+            span: auto
+            default: 0
+            type: checkbox
+            tab: 'shohabbos.board::lang.post.tab_main'
         content:
             label: 'shohabbos.board::lang.post.content'
             size: large
-            span: auto
+            span: left
             type: textarea
             tab: 'shohabbos.board::lang.post.tab_main'
         images:

@@ -171,3 +171,6 @@
 1.0.58:
     - 'Updated table shohabbos_board_posts'
     - builder_table_update_shohabbos_board_posts_12.php
+1.0.59:
+    - 'Updated table shohabbos_board_posts'
+    - builder_table_update_shohabbos_board_posts_13.php

@@ -137,8 +137,15 @@
             <div class="col-sm-6">
                 <div class="form-group">
                     <label for="postAmount"><small> {{'Цена'|_}} </small></label>
-                    <div class="input-group-lg">
+                    <div class="input-group input-group-lg">
                         <input id="postAmount" name="amount" type="number" class="form-control" value="{{post.getOriginal('amount')}}" placeholder="{{'Цена'|_}}" />
+                        
+                        <span class="input-group-addon">
+                            <select name="currency" style="background: transparent; border: none;">
+                                <option {{post.currency == 'uzs' ? 'selected'}} value="uzs">Сум</option>
+                                <option {{post.currency == 'usd' ? 'selected'}} value="usd">У.е</option>
+                            </select>
+                        </span>
                     </div>
                 </div>
             </div>

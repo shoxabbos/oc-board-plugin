@@ -299,10 +299,11 @@ class BoardUser extends ComponentBase
 
         $data = Input::only([
             'title', 'content', 'category_id', 'location_id', 'amount', 'is_contract',
-            'phone', 'email', 'contact_name', 'images', 'properties'
+            'phone', 'email', 'contact_name', 'images', 'properties', 'currency'
         ]);
 
         $rules = [
+            'currency' => 'required|in:uzs,usd',
             'title' => 'required|min:10',
             'content' => 'required|min:20',
             'category_id' => 'required|exists:shohabbos_board_categories,id',
@@ -368,12 +369,13 @@ class BoardUser extends ComponentBase
         $user = Auth::getUser();
         $data = Input::only([
             'title', 'content', 'category_id', 'location_id', 'amount', 'is_contract',
-            'phone', 'email', 'contact_name', 'images', 'properties'
+            'phone', 'email', 'contact_name', 'images', 'properties', 'currency'
         ]);
 
         $data['user_id'] = $user ? $user->id : null;
 
         $rules = [
+            'currency' => 'required|in:uzs,usd',
             'user_id' => 'required|exists:users,id',
             'title' => 'required|min:10',
             'content' => 'required|min:20',

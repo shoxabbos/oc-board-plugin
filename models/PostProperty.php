@@ -28,4 +28,9 @@ class PostProperty extends Model
      */
     public $rules = [
     ];
+
+    public $belongsTo = [
+        'property' => Property::class
+    ];
+
 }

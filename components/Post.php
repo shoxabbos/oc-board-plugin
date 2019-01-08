@@ -72,6 +72,11 @@ class Post extends ComponentBase
         $this->categoryPage = $this->page['categoryPage'] = $this->property('categoryPage');
         $this->post = $this->page['post'] = $this->loadPost();
 
+        if (!$this->post) {
+            return \Redirect::to('404');
+        }
+
+        $this->page->title = $this->post->title;
     }
 
     public function onRender()
@@ -102,9 +107,9 @@ class Post extends ComponentBase
          */
         if ($post && $post->category) {
             $post->category->setUrl($this->categoryPage, $this->controller);
-        }
 
-        $post->increment('views');
+            $post->increment('views');
+        }
 
         return $post;
     }

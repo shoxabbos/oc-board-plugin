@@ -74,7 +74,9 @@ class Post extends Model
     //
 
     public function getAmountAttribute($value) {
-        return number_format($value);
+        $currency = ($this->currency == 'uzs') ? 'сум' : 'у.е';
+
+        return number_format($value)." ".$currency;
     }
 
     public function getPlan($id) {

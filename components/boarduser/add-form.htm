@@ -143,12 +143,22 @@
             </div>
             
             <div class="col-sm-6">
+
+
                 <div class="form-group">
                     <label for="postAmount"><small> {{'Цена'|_}} </small></label>
-                    <div class="input-group-lg">
+                    <div class="input-group input-group-lg">
                         <input id="postAmount" name="amount" type="number" class="form-control" placeholder="{{'Цена'|_}}" />
+                        
+                        <span class="input-group-addon">
+                            <select name="currency" style="background: transparent; border: none;">
+                                <option value="uzs">Сум</option>
+                                <option value="usd">У.е</option>
+                            </select>
+                        </span>
                     </div>
                 </div>
+                
             </div>
             
             <div class="col-sm-6">

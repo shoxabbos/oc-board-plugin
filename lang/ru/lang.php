@@ -118,6 +118,7 @@
         'is_contract' => 'Договорная',
         'published' => 'Опубликовано',
         'published_at' => 'Дата публикации',
+        'currency' => 'Валюта',
     ],
     'location' => [
         'name' => 'Имя',
