@@ -1,6 +1,7 @@
 <?php namespace Shohabbos\Board\Components;
 
 use Auth;
+use Mail;
 use Flash;
 use Input;
 use Cookie;
@@ -411,10 +412,20 @@ class BoardUser extends ComponentBase
             }
 
             $model = Post::create($data);
+            $model->published_at = Carbon::now();
+            $model->published = true;
+            $model->save();
 
             if (!empty($properties)) {
                 $model->properties()->addMany($properties);
             }
+
+            $model->setUrl($this->postPage, $this->controller);
+
+            $this->sendAdminNotify("shohabbos.board::mail.new-post", [
+                'user' => $this->user->name,
+                'post' => $model->url
+            ]);
 
         } catch (Exception $e) {
             throw new ValidationException($e);
@@ -442,6 +453,18 @@ class BoardUser extends ComponentBase
         $category = Category::find($data['category_id']);
 
         $this->page['properties'] = $category->properties;
+    }
+
+
+
+    // private functions
+    public function sendAdminNotify($view, $data) {
+        Mail::send($view, $data, function($msg){
+            $admins = \Backend\Models\User::all();
+            foreach($admins as $admin) {
+                $msg->to($admin->email, $admin->name);
+            }
+        });
     }
 
 }

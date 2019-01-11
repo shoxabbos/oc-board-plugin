@@ -12,6 +12,12 @@ class Plugin extends PluginBase
         'Shohabbos.Payme',
     ];
 
+    public function registerMailTemplates()
+    {
+        return [
+            'shohabbos.board::mail.new-post',
+        ];
+    }
 
     public function boot()
     {
