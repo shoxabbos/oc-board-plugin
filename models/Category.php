@@ -65,7 +65,7 @@ class Category extends Model
             'id' => $this->id,
             'slug' => $this->slug,
             'category' => $this->slug,
-            'categories' => implode("/", $this->getParentsAndSelf()->lists('slug')),
+            //'categories' => implode("/", $this->getParentsAndSelf()->lists('slug')),
         ];
         
         return $this->url = $controller->pageUrl($pageName, $params, false);

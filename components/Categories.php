@@ -2,6 +2,7 @@
 
 use Db;
 use App;
+use Cache;
 use Request;
 use Carbon\Carbon;
 use Cms\Classes\Page;
