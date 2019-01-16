@@ -14,9 +14,11 @@ class Category extends Model
     public $implement = ['@RainLab.Translate.Behaviors.TranslatableModel'];
 
     public $translatable = [
-        'name', 'seo_title',
-        'seo_desc', 'seo_keys',
-        'slug'
+        'name', 
+        'seo_title',
+        'seo_desc', 
+        'seo_keys',
+        ['slug', 'index' => true]
     ];
 
     protected $slugs = ['slug' => 'name'];
