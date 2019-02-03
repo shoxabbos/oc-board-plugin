@@ -1,0 +1,30 @@
+fields:
+    text:
+        label: Текст
+        size: small
+        span: auto
+        type: textarea
+    user:
+        label: Пользователь
+        nameFrom: name
+        descriptionFrom: description
+        list: $/rainlab/user/models/user/columns.yaml
+        span: auto
+        type: recordfinder
+    stars:
+        label: Звезды
+        options:
+            1: '1'
+            2: '2'
+            3: '3'
+            4: '4'
+            5: '5'
+        span: right
+        type: dropdown
+    author:
+        label: Автор
+        nameFrom: name
+        descriptionFrom: description
+        list: $/rainlab/user/models/user/columns.yaml
+        span: auto
+        type: recordfinder

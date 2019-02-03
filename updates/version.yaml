@@ -177,3 +177,12 @@
 1.0.60:
     - 'Created table shohabbos_board_post_messages'
     - builder_table_create_shohabbos_board_post_messages.php
+1.0.61:
+    - 'Created table shohabbos_board_reviews'
+    - builder_table_create_shohabbos_board_reviews.php
+1.0.62:
+    - 'Updated table shohabbos_board_reviews'
+    - builder_table_update_shohabbos_board_reviews.php
+1.0.63:
+    - 'Updated table shohabbos_board_reviews'
+    - builder_table_update_shohabbos_board_reviews_2.php

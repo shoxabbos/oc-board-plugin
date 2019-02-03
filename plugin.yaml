@@ -26,6 +26,9 @@ permissions:
     manage_post_messages:
         tab: 'shohabbos.board::lang.plugin.name'
         label: 'Manage post messages'
+    manage_reviews:
+        tab: 'shohabbos.board::lang.plugin.name'
+        label: 'Manage reviews'
 navigation:
     board:
         label: 'shohabbos.board::lang.menu.main_menu'
@@ -74,4 +77,8 @@ navigation:
             board-post-messages:
                 label: Жалобы
                 url: shohabbos/board/postmessages
-                icon: icon-sitemap
+                icon: icon-slack
+            pixel-reviews:
+                label: Отзывы
+                url: shohabbos/board/reviews
+                icon: icon-star-half-empty

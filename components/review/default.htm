@@ -1,0 +1,26 @@
+{% set reviews = __SELF__.loadReviews() %}
+
+<h2 class="mbm"> {{"Отзывы"|_}} </h2>
+<div class="reviews pts pbs">
+
+	{% for review in reviews %}
+	<hr>
+	<div class="media">
+		<a class="avatar pull-left media-object" href="{{'user'|page({id: review.author_id})}}">
+			<span class="avatar-image" style="background-image:url( {{review.user.avatar.path|resize(100, 100)}} )"></span>
+		</a>
+		<div class="media-body">
+			<div class="media-heading">
+				<b> {{review.author.name}} </b>
+			</div>
+			
+			{{review.text}}
+		</div>
+	</div>
+	{% else %}
+		<div class="text-center alert alert-info">
+			{{"Нет данных"|_}}
+		</div>
+	{% endfor %}
+
+</div>

@@ -1,9 +1,9 @@
 fields:
     post:
         label: Post
-        nameFrom: name
+        nameFrom: title
         descriptionFrom: description
-        list: $/shohabbos/board/models/post/columns.yaml
+        list: $/shohabbos/board/models/post/message-columns.yaml
         span: auto
         type: recordfinder
     user:
@@ -13,7 +13,7 @@ fields:
         list: $/rainlab/user/models/user/columns.yaml
         span: auto
         type: recordfinder
-    textarea1:
+    text:
         label: 'Text area'
         size: large
         span: auto
