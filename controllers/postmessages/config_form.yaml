@@ -1,0 +1,10 @@
+name: PostMessages
+form: $/shohabbos/board/models/postmessage/fields.yaml
+modelClass: Shohabbos\Board\Models\PostMessage
+defaultRedirect: shohabbos/board/postmessages
+create:
+    redirect: 'shohabbos/board/postmessages/update/:id'
+    redirectClose: shohabbos/board/postmessages
+update:
+    redirect: shohabbos/board/postmessages
+    redirectClose: shohabbos/board/postmessages

@@ -1,0 +1,19 @@
+<div class="text-right">
+    <a href="#!" onclick="$('#postMessage').toggle()" class="btn btn-danger"> {{"Пожаловаться на объявление"|_}} </a> <br><br>
+</div>
+
+<div id="postMessage" style="display: none;">
+    <form data-request="onPostMessage" data-request-flash data-request-success="$('#postMessage').toggle(); $('#postMessageFormText').val('')">
+    	<input type="hidden" name="post_id" value="{{post.id}}">
+
+    	<div class="form-group">
+    		<label> {{"Сообщение"|_}} </label>
+    		<textarea name="text" rows="8" id="postMessageFormText" class="form-control"></textarea>
+    	</div>
+
+    	<div class="form-group">
+    		<button type="submit" class="btn btn-success"> {{"Отправить"|_}} </button>
+    	</div>
+
+    </form>
+</div>

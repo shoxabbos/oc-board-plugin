@@ -23,6 +23,9 @@ permissions:
     manage_balance_history:
         tab: 'shohabbos.board::lang.plugin.name'
         label: 'Balance history'
+    manage_post_messages:
+        tab: 'shohabbos.board::lang.plugin.name'
+        label: 'Manage post messages'
 navigation:
     board:
         label: 'shohabbos.board::lang.menu.main_menu'
@@ -68,3 +71,7 @@ navigation:
                 icon: icon-history
                 permissions:
                     - manage_balance_history
+            board-post-messages:
+                label: Жалобы
+                url: shohabbos/board/postmessages
+                icon: icon-sitemap

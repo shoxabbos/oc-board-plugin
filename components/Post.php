@@ -1,9 +1,15 @@
 <?php namespace Shohabbos\Board\Components;
 
+use Auth;
+use Flash;
+use Input;
+use Validator;
 use BackendAuth;
 use Cms\Classes\Page;
+use ValidationException;
 use Cms\Classes\ComponentBase;
 use Shohabbos\Board\Models\Post as BoardPost;
+use Shohabbos\Board\Models\PostMessage;
 
 class Post extends ComponentBase
 {
@@ -84,6 +90,27 @@ class Post extends ComponentBase
         if (empty($this->post)) {
             $this->post = $this->page['post'] = $this->loadPost();
         }
+    }
+
+    public function onPostMessage() {
+        $data = Input::only(['text', 'post_id', 'user_id']);
+
+        $rules = [
+            'text' => 'required|string',
+            'user_id' => 'sometimes|exists:users,id',
+            'post_id' => 'required|exists:shohabbos_board_posts,id',
+        ];
+
+        $validation = Validator::make($data, $rules);
+
+        if ($validation->fails()) {
+            throw new ValidationException($validation);
+        }
+
+        $message = new PostMessage($data);
+        $message->save();
+        
+        Flash::success("Жалоба принята");
     }
 
     protected function loadPost()

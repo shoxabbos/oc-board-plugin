@@ -1,0 +1,20 @@
+fields:
+    post:
+        label: Post
+        nameFrom: name
+        descriptionFrom: description
+        list: $/shohabbos/board/models/post/columns.yaml
+        span: auto
+        type: recordfinder
+    user:
+        label: Ползватель
+        nameFrom: name
+        descriptionFrom: description
+        list: $/rainlab/user/models/user/columns.yaml
+        span: auto
+        type: recordfinder
+    textarea1:
+        label: 'Text area'
+        size: large
+        span: auto
+        type: textarea
