@@ -88,6 +88,28 @@ class Post extends Model
         return isset($posts[$this->id]) ? 'active' : '';
     }
 
+    public function loadDetailProperties() {
+        $data = [];
+
+        foreach ($this->properties as $key => $value) {
+            $label = $value->value;
+
+            if (isset($value->property->values)) {
+                $firstVal = $value->property->values()->where('value', $value->value)->first();
+                if ($firstVal) {
+                    $label = $firstVal->label;
+                }
+            }
+
+            $data[] = [
+                'label' => $value->property->label,
+                'value' => $label,
+            ];
+        }
+
+        return $data;
+    }
+
     //
     // Scopes
     //
@@ -234,7 +256,7 @@ class Post extends Model
     }
 
 
-    
+        
 
 
     /**
