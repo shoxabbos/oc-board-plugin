@@ -7,11 +7,20 @@
 	<hr>
 	<div class="media">
 		<a class="avatar pull-left media-object" href="{{'user'|page({id: review.author_id})}}">
-			<span class="avatar-image" style="background-image:url( {{review.user.avatar.path|resize(100, 100)}} )"></span>
+			<span class="avatar-image" style="background-image:url({{review.author.avatar.path|resize(100, 100)}} )"></span>
 		</a>
 		<div class="media-body">
 			<div class="media-heading">
 				<b> {{review.author.name}} </b>
+				
+				<div class="mtx">
+                    <div class="star-rating">
+                        {% for key in 1..5 %}
+                            <i class="material-icons {{ review.stars >= key ? 'active' : '' }}">star</i>
+                        {% endfor %}
+                    </div>
+                </div>
+                
 			</div>
 			
 			{{review.text}}

@@ -31,7 +31,21 @@ class Plugin extends PluginBase
             $model->belongsTo['location'] = 'Shohabbos\Board\Models\Location';
             $model->hasMany['posts'] = 'Shohabbos\Board\Models\Post';
             $model->hasMany['history'] = 'Shohabbos\Board\Models\BalanceHistory';
-            $model->hasMany['reviews'] = 'Shohabbos\Board\Models\Review';
+            $model->hasMany['reviews'] = ['Shohabbos\Board\Models\Review'];
+
+            $model->addDynamicMethod('getRating', function($user) use ($model) {
+
+                $query = $user->reviews()->get();
+                $count = $query->count();
+                $sum = $query->sum('stars');
+
+                if ($sum) {
+                    return round($sum / $count);
+                } else {
+                    return 0;
+                }
+
+            });
         });
 
 

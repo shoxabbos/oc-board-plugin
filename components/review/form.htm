@@ -1,9 +1,24 @@
 <form data-request="onCreate" data-request-flash data-request-success="$('#reviewText').val('')" data-request-update="'{{__SELF__}}::default': '#reviewsList'">
 	<div class="h3"> {{"Оставьте свой отзыв"|_}} </div>
 
+	<span>{{"Оценить"|_}}:</span> 
+    <div class="star-rating mhs">
+        <input type="radio" name="stars" checked>
+        <input type="radio" name="stars" id="star-1" value="1">
+        <label for="star-1"><i class="material-icons">star</i></label>
+        <input type="radio" name="stars" id="star-2" value="2">
+        <label for="star-2"><i class="material-icons">star</i></label>
+        <input type="radio" name="stars" id="star-3" value="3">
+        <label for="star-3"><i class="material-icons">star</i></label>
+        <input type="radio" name="stars" id="star-4" value="4">
+        <label for="star-4"><i class="material-icons">star</i></label>
+        <input type="radio" name="stars" id="star-5"  value="5">
+        <label for="star-5"><i class="material-icons">star</i></label>
+    </div>
+
 	<div class="form-group">
 		<input type="hidden" name="author_id" value="{{user.id}}">
-		<textarea rows="5" id="reviewText" name="text" placeholder="Оставьте свой отзыв о продавце" class="form-control"></textarea>
+		<textarea rows="5" id="reviewText" name="text" placeholder='{{"Оставьте свой отзыв о продавце"|_}}' class="form-control"></textarea>
 	</div>
 
 	<div class="form-group">

@@ -24,6 +24,10 @@ class Review extends ComponentBase
         ];
     }
 
+    public function onRun() {
+        
+    }
+
     public function defineProperties()
     {
         return [
@@ -45,11 +49,12 @@ class Review extends ComponentBase
 
     public function onCreate() {
         $user = Auth::getUser();
-        $data = Input::only(['text']);
+        $data = Input::only(['text', 'stars']);
         $data['user_id'] = $this->property('userNumber');
         $data['author_id'] = $user ? $user->id : 0;
 
         $rules = [
+            'stars' => 'integer|min:1|max:5',
             'user_id' => 'required|exists:users,id',
             'author_id' => 'required|exists:users,id',
             'text' => 'required|string|min:5'

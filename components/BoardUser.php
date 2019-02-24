@@ -352,7 +352,7 @@ class BoardUser extends ComponentBase
             $data['attrs'] = [];
             
 
-            $post->published = false;
+            $post->published = true;
             $post->fill($data)->save();
 
             if (!empty($properties)) {
